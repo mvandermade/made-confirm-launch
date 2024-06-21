@@ -1,0 +1,59 @@
+name: Package main Gradle project
+
+on:
+  push:
+    branches:
+      # @FixBeforePublish naming convention for branching
+      # Example: find some sensible repo like pinterest ktlint ? How do they name it?
+      - releaseAndPackage/*
+  workflow_dispatch:
+
+jobs:
+  lint-build-test-package-gradle-project:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # @FixBeforePublish
+        # Mac OS runner only 64 bits. ARM target is common now but can't produce easily deployables yet...
+        # Suggestion: add 'macOS-latest' when easy to add!
+        os: [ ubuntu-latest, windows-latest ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          # Can't be higher
+          # @FixBeforePublish
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
+      - name: Lint with ktLint
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: ktlintCheck
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: build
+      - name: Test with Kotlin Test
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: allTests
+      - name: Package Release Distribution For Current OS
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: packageReleaseDistributionForCurrentOS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: made-kmp-jvm-calculator-dist-${{ runner.os }}
+          path: ${{ github.workspace }}/composeApp/build/compose/binaries/
+      - name: packageReleaseUberJarForCurrentOS
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: packageReleaseUberJarForCurrentOS
+        # @FixBeforePublish
+        # These are not downloadable by public users... so pretty useless step right now.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: made-kmp-jvm-calculator-jar-${{ runner.os }}
+          path: ${{ github.workspace }}/composeApp/build/compose/jars/
