@@ -22,15 +22,12 @@ val rowPaddedModifier =
 
 val amountOfStates = 5
 
-const val TASK_PERIOD_MS = 600L
+const val TASK_PERIOD_MS = 1000L
 
 // Needed to wait for app initialisation.
 // FIXME try not to rely on cpu bound numbers
 // If this value is too low you'll get state access warnings.
 const val TASK_INITIAL_DELAY_MS = 1000L
-
-// Seconds the application can be up
-const val APP_TTL_MS = 300_000
 
 /*
     Added some blocks of
@@ -58,28 +55,8 @@ fun app(
 ) {
     var appState by remember { mutableStateOf(AppState.START) }
 
-    // Time linit counters
-    var counterWatcherMs by remember { mutableStateOf(0L) }
-    val atomicCounter = AtomicLong(0)
-
     // Timers global
     var scanDrivePathTimer by remember { mutableStateOf<TimerTask?>(null) }
-    val ttlTimer by remember {
-        mutableStateOf<TimerTask>(
-            Timer("TTL").schedule(TASK_INITIAL_DELAY_MS, 1_000) {
-                val counterMs = atomicCounter.addAndGet(1_000)
-                // Continue after 60s manually switching state
-                if (counterMs > AUTOMATIC_CONTINUE_SEARCHING_ROOT_MS &&
-                    appState == AppState.START
-                ) {
-                    appState = AppState.SEARCHING_ROOT
-                }
-                // Exit with failure
-                if (counterMs > APP_TTL_MS) exitProcess(1)
-                counterWatcherMs = counterMs
-            },
-        )
-    }
 
     var countdownBackupButton by remember { mutableStateOf(10) }
     var buttonCountDownTimer by remember {
@@ -122,13 +99,6 @@ fun app(
             AppState.START_BACKUP -> {}
         }
 
-        when (requestedNewAppState) {
-            AppState.START -> {}
-            AppState.SEARCHING_ROOT -> {}
-            AppState.SEARCHING_FILE -> {}
-            AppState.WAIT_FOR_ACKNOWLEDGE -> {}
-            AppState.START_BACKUP -> ttlTimer.cancel()
-        }
         // Switch to other state
         appState = requestedNewAppState
     }
@@ -158,7 +128,7 @@ fun app(
 
     // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if (appState == AppState.START) {
-        pageStart(appState, cmdArgs, ::requestNewState, APP_TTL_MS - counterWatcherMs, counterWatcherMs)
+        pageStart(appState, cmdArgs, ::requestNewState)
     } // AppState.START
 
     // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,9 +204,6 @@ fun app(
                         Text(
                             text =
                                 """
-                                Als je niks doet sluit de applicatie
-                                met "exit 1" over:
-                                ${(APP_TTL_MS - counterWatcherMs) / 1000}s
                                 Deze backup popup zal via de Taakplanner regelmatig opnieuw worden getoond.
                                 """.trimIndent(),
                         )
@@ -308,9 +275,6 @@ fun app(
                         Text(
                             text =
                                 """
-                                Als je niks doet sluit de applicatie
-                                met "exit 1" over:
-                                ${(APP_TTL_MS - counterWatcherMs) / 1000}s
                                 Deze backup popup zal via de Taakplanner regelmatig opnieuw worden getoond.
                                 """.trimIndent(),
                         )
@@ -326,7 +290,6 @@ fun app(
             appState,
             cmdArgs,
             ::requestNewState,
-            APP_TTL_MS - counterWatcherMs,
             countdownBackupButton,
         )
     }

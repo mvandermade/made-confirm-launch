@@ -18,9 +18,7 @@ import kotlin.system.exitProcess
 fun pageStart(
     appState: AppState,
     cmdArgs: CmdArgs,
-    requestNewState: (appState: AppState) -> Unit,
-    ttlMs: Long,
-    counterWatcherMs: Long,
+    requestNewState: (appState: AppState) -> Unit
 ) {
     MaterialTheme {
         Column {
@@ -65,7 +63,6 @@ fun pageStart(
 
             var text =
                 """
-                (Automatisch over: ${(AUTOMATIC_CONTINUE_SEARCHING_ROOT_MS - counterWatcherMs) / 1000} seconden)
                 Uitvoeren: ${cmdArgs.exec}
                 Op schijf: ${cmdArgs.checkDrivePath}
                 Controle : ${cmdArgs.checkFilePath}                    
@@ -88,9 +85,6 @@ fun pageStart(
                     Text(
                         text =
                             """
-                            Als je niks doet sluit de applicatie 
-                            met "exit 1" over:
-                            ${ttlMs / 1000}s
                             Deze backup popup zal via de Taakplanner regelmatig opnieuw worden getoond.
                             """.trimIndent(),
                     )
