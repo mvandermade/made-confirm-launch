@@ -30,11 +30,9 @@ class Page1StartTest {
 
         cr.waitUntilText("Andere keer backuppen")
         cr.waitUntilText("Doorgaan >")
-        cr.waitUntilSubstringText("De computer gaat proberen:")
         cr.waitUntilSubstringText("/mydrive")
         cr.waitUntilSubstringText("/media/usb/mydriveE.ffs_batch")
         cr.waitUntilSubstringText("freefilesync hello")
-        cr.waitUntilSubstringText("Als je niks doet sluit de applicatie")
         cr.waitUntilSubstringText("Stap 1/5")
     }
 
@@ -55,11 +53,9 @@ class Page1StartTest {
 
         cr.waitUntilText("Andere keer backuppen")
         cr.waitUntilText("Doorgaan >")
-        cr.waitUntilSubstringText("De computer gaat proberen:")
         cr.waitUntilSubstringText("/mydrive")
         cr.waitUntilSubstringText("/media/usb/mydriveE.ffs_batch")
         cr.waitUntilSubstringText("freefilesync hello")
-        cr.waitUntilSubstringText("Als je niks doet sluit de applicatie")
         cr.waitUntilSubstringText("Stap 1/5")
         cr.waitUntilSubstringText("De computer gaat alleen kijken (dryRun)")
     }

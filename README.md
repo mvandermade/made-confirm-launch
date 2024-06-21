@@ -40,6 +40,9 @@ With spaces
 ```text
 run --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -exec='nano myfile.txt'"
 ```
+```text
+run --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -exec='nano myfile.txt' -dryRun"
+```
 ### 2.4 Running release jar
 The msi function did not work, two x64 machines gave jdk error. So build the jar and run with the microsoft jdk: (feb 2024)
 #### 2.4.1 Powershell

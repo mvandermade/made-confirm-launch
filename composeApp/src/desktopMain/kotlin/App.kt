@@ -12,9 +12,7 @@ import screens.page4WaitForAcknowledge
 import screens.pageStart
 import screens.pageStartBackup
 import java.util.*
-import java.util.concurrent.atomic.AtomicLong
 import kotlin.concurrent.schedule
-import kotlin.system.exitProcess
 
 val rowPaddedModifier =
     Modifier

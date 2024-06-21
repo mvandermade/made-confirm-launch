@@ -1,6 +1,5 @@
 package screens
 
-import AUTOMATIC_CONTINUE_SEARCHING_ROOT_MS
 import AppState
 import CmdArgs
 import androidx.compose.foundation.layout.Column
@@ -18,7 +17,7 @@ import kotlin.system.exitProcess
 fun pageStart(
     appState: AppState,
     cmdArgs: CmdArgs,
-    requestNewState: (appState: AppState) -> Unit
+    requestNewState: (appState: AppState) -> Unit,
 ) {
     MaterialTheme {
         Column {

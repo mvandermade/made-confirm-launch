@@ -1,4 +1,3 @@
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
@@ -32,7 +31,7 @@ fun main(args: Array<String>) {
         Window(
             onCloseRequest = ::exitApplication,
             title = APP_TITLE,
-            state = rememberWindowState(width = 400.dp, height = 500.dp)
+            state = rememberWindowState(width = 400.dp, height = 500.dp),
         ) {
             app(cmdArgs, pathsNeedsLookup, FileProviderJava())
         }

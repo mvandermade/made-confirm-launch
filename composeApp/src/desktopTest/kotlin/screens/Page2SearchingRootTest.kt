@@ -35,6 +35,5 @@ class Page2SearchingRootTest {
         cr.waitUntilSubstringText("Zoeken naar schijf")
         cr.waitUntilText("""Tot nu toe de volgende drives gevonden...:""")
         cr.waitUntilText("""A:\, /""")
-        cr.waitUntilSubstringText("Als je niks doet sluit de applicatie")
     }
 }

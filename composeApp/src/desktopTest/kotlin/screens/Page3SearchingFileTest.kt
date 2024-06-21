@@ -33,7 +33,6 @@ class Page3SearchingFileTest {
         cr.onNodeWithText("Doorgaan >").performClick()
         cr.waitUntilText("Stap 3/5")
         cr.waitUntilSubstringText("Aan het zoeken naar bestanden via meerdere combinaties...")
-        cr.waitUntilSubstringText("Als je niks doet sluit de applicatie")
         cr.waitUntilSubstringText("""A:\DUMMYPATH, B:\ALSODUMMY""")
     }
 }

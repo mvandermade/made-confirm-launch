@@ -35,6 +35,5 @@ class Page4WaitForAcknowledgeTest {
         cr.waitUntilText("Stap 4/5")
         cr.waitUntilSubstringText("Backup maken")
         cr.waitUntilText("Gepland om uit te voeren: freefilesync hello")
-        cr.waitUntilSubstringText("Als je niks doet sluit de applicatie")
     }
 }
