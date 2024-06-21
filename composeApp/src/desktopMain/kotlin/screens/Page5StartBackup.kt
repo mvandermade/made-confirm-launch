@@ -24,7 +24,7 @@ fun pageStartBackup(
     var appText =
         """
         Target zou zijn: ${cmdArgs.exec}. Nu niks mee gedaan vanwege argument -dryRun
-        Applicatie kan worden gesloten. Automatisch afsluiten is uitgeschakeld.
+        Applicatie kan worden gesloten.
         """.trimIndent()
 
     if (!cmdArgs.dryRun) {

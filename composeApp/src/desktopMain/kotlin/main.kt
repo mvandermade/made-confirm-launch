@@ -31,7 +31,7 @@ fun main(args: Array<String>) {
         Window(
             onCloseRequest = ::exitApplication,
             title = APP_TITLE,
-            state = rememberWindowState(width = 400.dp, height = 500.dp),
+            state = rememberWindowState(width = 440.dp, height = 350.dp),
         ) {
             app(cmdArgs, pathsNeedsLookup, FileProviderJava())
         }
