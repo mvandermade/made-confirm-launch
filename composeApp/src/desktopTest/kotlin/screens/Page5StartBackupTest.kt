@@ -16,7 +16,7 @@ class Page5StartBackupTest {
     val cr = createComposeRule()
 
     @Test
-    fun `Shows start backup dryrun`() {
+    fun `Shows start backup, dryrun`() {
         cr.setContent {
             app(
                 CmdArgs(
