@@ -61,10 +61,7 @@ fun pageStart(
             }
 
             var text =
-                """
-                Uitvoeren: ${cmdArgs.exec}
-                Op schijf: ${cmdArgs.checkDrivePath}
-                Controle : ${cmdArgs.checkFilePath}                    
+                """         
                 """.trimIndent()
 
             if (cmdArgs.dryRun) {
@@ -77,17 +74,6 @@ fun pageStart(
 
             Row(modifier = rowPaddedModifier) {
                 Text(fontFamily = FontFamily.Monospace, text = text)
-            }
-
-            Row(modifier = rowPaddedModifier) {
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    Text(
-                        text =
-                            """
-                            Deze backup popup zal via de Taakplanner regelmatig opnieuw worden getoond.
-                            """.trimIndent(),
-                    )
-                }
             }
         }
     }

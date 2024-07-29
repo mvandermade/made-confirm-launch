@@ -23,7 +23,8 @@ class Page5StartBackupTest {
                     checkDrivePath = """A:\""",
                     checkFilePath = """A:\Agreed""",
                     dryRun = true,
-                    exec = "freefilesync hello",
+                    program = "freefilesync",
+                    argument = "hello",
                 ),
                 arrayOf("""A:\Agreed"""),
                 MockFileProvider(),
@@ -38,7 +39,7 @@ class Page5StartBackupTest {
         cr.onNodeWithText("Backup maken (7)").performClick()
         cr.waitUntilText("Stap 5/5")
         cr.waitUntilSubstringText("Dryrun")
-        cr.waitUntilSubstringText("Target zou zijn: freefilesync hello")
+        cr.waitUntilSubstringText("Programma zou zijn: freefilesync met argument: hello")
     }
 
     @Test
@@ -49,7 +50,8 @@ class Page5StartBackupTest {
                     checkDrivePath = """A:\""",
                     checkFilePath = """A:\Agreed""",
                     dryRun = false,
-                    exec = "freefilesync hello",
+                    program = "freefilesync",
+                    argument = "hello",
                 ),
                 arrayOf("""A:\Agreed"""),
                 MockFileProvider(),

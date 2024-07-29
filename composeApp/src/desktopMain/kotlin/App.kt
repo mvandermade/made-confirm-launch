@@ -43,8 +43,6 @@ fun appStateToIndicator(appState: AppState): String {
         }
 }
 
-const val AUTOMATIC_CONTINUE_SEARCHING_ROOT_MS = 60_000
-
 @Composable
 fun app(
     cmdArgs: CmdArgs,
@@ -157,7 +155,7 @@ fun app(
             Column {
                 Row {
                     TopAppBar(
-                        title = { Text(text = "Zoeken naar schijf: ${cmdArgs.checkDrivePath}") },
+                        title = { Text(text = "Zet schijf aan: ${cmdArgs.checkDrivePath}") },
                     )
                 }
                 Row {

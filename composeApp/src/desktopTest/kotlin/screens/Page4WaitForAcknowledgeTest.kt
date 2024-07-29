@@ -23,7 +23,8 @@ class Page4WaitForAcknowledgeTest {
                     checkDrivePath = """A:\""",
                     checkFilePath = """A:\Agreed""",
                     dryRun = false,
-                    exec = "freefilesync hello",
+                    program = "freefilesync",
+                    argument = "hello",
                 ),
                 arrayOf("""A:\Agreed"""),
                 MockFileProvider(),
@@ -34,6 +35,6 @@ class Page4WaitForAcknowledgeTest {
         cr.onNodeWithText("Doorgaan >").performClick()
         cr.waitUntilText("Stap 4/5")
         cr.waitUntilSubstringText("Backup maken")
-        cr.waitUntilText("Gepland om uit te voeren: freefilesync hello")
+        cr.waitUntilText("Gepland om uit te voeren: freefilesync met argument: hello")
     }
 }

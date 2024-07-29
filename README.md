@@ -1,11 +1,10 @@
-# made-CC (ConfirmedCopy)
+# made-confirm-launch
+
+## 0 About
+The project was built to be able to replace a .vbs file used under windows 11 but no longer works under windows 12
 
 ## 1. Introduction
-Project to enable launching application after checking if disk is mounted and file is present.
-Known support:
-- Windows 11
-- OS Sonona
-- Ubuntu
+The user is asked questions using popup style buttons:
 - ![screenshot01.png](screenshot01.png)
 
 ## 2. How to get started
@@ -31,17 +30,10 @@ Known support:
   - `./gradlew composeApp:run`
   - Or use your IDE short run configs.
   - Use @Preview annotation in devTools folder.
-  - Use the following arguments for gradle to supply --args 
-  - Example will throw access denied under macos...
+  - Use the following arguments for gradle to supply --args
+With spaces in argument
 ```text
-run --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -exec=/Applications/Numbers.app"
-```
-With spaces
-```text
-run --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -exec='nano myfile.txt'"
-```
-```text
-run --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -exec='nano myfile.txt' -dryRun"
+desktopRun --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync" -argument='/Users/Shared/BatchRun.ffs_batch'" -DmainClass=MainKt --quiet
 ```
 ### 2.4 Running release jar
 The msi function did not work, two x64 machines gave jdk error. So build the jar and run with the microsoft jdk: (feb 2024)
@@ -51,8 +43,7 @@ The msi function did not work, two x64 machines gave jdk error. So build the jar
 C:\Users\Martijn\Desktop\made-cc-windows-x64-1.0.1.jar
 -checkDrivePath='X'
 -checkFilePath='BackupScripts\SyncSettingsX.ffs_batch'
--exec='powershell' -dryRun
-
+-program='powershell' -dryRun
 ```
 
 - Where X is drive letter like M:\. : seems not parseable so since 1.0.1 the app will add : and :\

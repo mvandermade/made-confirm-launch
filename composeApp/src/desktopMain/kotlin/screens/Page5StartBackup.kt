@@ -7,13 +7,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import appStateToIndicator
 import rowPaddedModifier
 import java.util.*
 import kotlin.concurrent.schedule
-import kotlin.concurrent.thread
 import kotlin.system.exitProcess
+
 
 @Composable
 fun pageStartBackup(
@@ -23,32 +23,41 @@ fun pageStartBackup(
     var topBarText = "Dryrun"
     var appText =
         """
-        Target zou zijn: ${cmdArgs.exec}. Nu niks mee gedaan vanwege argument -dryRun
+        Programma zou zijn: ${cmdArgs.program} met argument: ${cmdArgs.argument}. Nu niks mee gedaan vanwege argument -dryRun
         Applicatie kan worden gesloten.
         """.trimIndent()
 
     if (!cmdArgs.dryRun) {
-        topBarText = "Backupprogramma `${cmdArgs.exec}`wordt gestart..."
+        topBarText = "Backupprogramma `${cmdArgs.argument}`wordt gestart..."
         appText =
             """
             Deze applicatie wacht totdat de backuptool klaar is.
             Sluiten van deze applicatie met (x) kan gevolgen hebben voor de backup...
             """.trimIndent()
 
-        thread {
-            try {
-                val process = Runtime.getRuntime().exec(cmdArgs.exec)
-                process.waitFor()
+        try {
+            val process = if (cmdArgs.argument == null) {
+                ProcessBuilder(cmdArgs.program).start()
+            } else {
+                ProcessBuilder(cmdArgs.program, cmdArgs.argument).start()
+            }
+            val exitCode = process.waitFor()
+            if (exitCode == 0) {
+                println("Exitting code 0")
                 exitProcess(0)
-            } catch (e: Exception) {
-                topBarText = "Error tijdens starten backup applicatie :( Sluit over 5 sec..."
-                appText = "Fout: ${e.message}"
-                e.printStackTrace()
-                Timer("StartBackupIndicator").schedule(5_000, 5_000) {
-                    exitProcess(1)
-                }
+            } else {
+                println("Exitting code -1")
+                exitProcess(-1)
+            }
+        } catch (e: Exception) {
+            topBarText = "Error tijdens starten backup applicatie :( Sluit over 5 sec..."
+            appText = "Fout: ${e.message}"
+            e.printStackTrace()
+            Timer("StartBackupIndicator").schedule(5_000, 5_000) {
+                exitProcess(1)
             }
         }
+
     }
 
     MaterialTheme {

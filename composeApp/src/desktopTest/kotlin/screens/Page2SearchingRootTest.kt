@@ -23,7 +23,8 @@ class Page2SearchingRootTest {
                     checkDrivePath = """/mydrive""",
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = false,
-                    exec = "freefilesync hello",
+                    program = "freefilesync",
+                    argument = "hello",
                 ),
                 arrayOf(""),
                 MockFileProvider(),
@@ -32,7 +33,7 @@ class Page2SearchingRootTest {
         cr.waitUntilText("Doorgaan >")
         cr.onNodeWithText("Doorgaan >").performClick()
         cr.waitUntilText("Stap 2/5")
-        cr.waitUntilSubstringText("Zoeken naar schijf")
+        cr.waitUntilSubstringText("Zet schijf aan:")
         cr.waitUntilText("""Tot nu toe de volgende drives gevonden...:""")
         cr.waitUntilText("""A:\, /""")
     }

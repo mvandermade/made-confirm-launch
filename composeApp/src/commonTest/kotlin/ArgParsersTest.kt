@@ -12,14 +12,16 @@ class ArgParsersTest {
             arrayOf(
                 "-checkDrivePath=/",
                 "-checkFilePath=/Users/mvandermade/myfile.txt",
-                "-exec=nano myfile.txt",
+                "-program=nano",
+                "-argument=myfile.txt"
             )
 
         val cmdArgs = parseArgs(input)
         assertEquals("/", cmdArgs.checkDrivePath)
         assertEquals("/Users/mvandermade/myfile.txt", cmdArgs.checkFilePath)
         assertEquals(false, cmdArgs.dryRun)
-        assertEquals("nano myfile.txt", cmdArgs.exec)
+        assertEquals("myfile.txt", cmdArgs.argument)
+        assertEquals("nano", cmdArgs.program)
     }
 
     @Test
@@ -28,14 +30,16 @@ class ArgParsersTest {
             arrayOf(
                 "-checkDrivePath=/",
                 "-checkFilePath=/Users/mvandermade/myfile.txt",
-                "-exec=nano myfile.txt?q=007",
+                "-program=nano",
+                "-argument=myfile.txt?q=007"
             )
 
         val cmdArgs = parseArgs(input)
         assertEquals("/", cmdArgs.checkDrivePath)
         assertEquals("/Users/mvandermade/myfile.txt", cmdArgs.checkFilePath)
         assertEquals(false, cmdArgs.dryRun)
-        assertEquals("nano myfile.txt?q=007", cmdArgs.exec)
+        assertEquals("myfile.txt?q=007", cmdArgs.argument)
+        assertEquals("nano", cmdArgs.program)
     }
 
     @Test
@@ -44,7 +48,8 @@ class ArgParsersTest {
             arrayOf(
                 "-checkDrivePathDUMMY=/",
                 "-checkFilePath=/Users/mvandermade/myfile.txt",
-                "-exec=nano myfile.txt?q=007",
+                "-program=nano",
+                "-argument=myfile.txt?q=007"
             )
         assertFailsWith<IllegalArgumentException> {
             parseArgs(input)
@@ -57,7 +62,8 @@ class ArgParsersTest {
             arrayOf(
                 "-checkDrivePath=/",
                 "-checkFilePathDUMMY=/Users/mvandermade/myfile.txt",
-                "-exec=nano myfile.txt?q=007",
+                "-program=nano",
+                "-argument=myfile.txt?q=007"
             )
         assertFailsWith<IllegalArgumentException> {
             parseArgs(input)
@@ -65,12 +71,12 @@ class ArgParsersTest {
     }
 
     @Test
-    fun `Missing exec`() {
+    fun `Missing program`() {
         val input =
             arrayOf(
                 "-checkDrivePath=/",
                 "-checkFilePath=/Users/mvandermade/myfile.txt",
-                "-execDUMMY=nano myfile.txt?q=007",
+                "-programDUMMY=nano myfile.txt?q=007",
             )
         assertFailsWith<IllegalArgumentException> {
             parseArgs(input)

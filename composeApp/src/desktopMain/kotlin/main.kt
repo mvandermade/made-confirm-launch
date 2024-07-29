@@ -9,11 +9,7 @@ const val APP_VERSION = "1.0.1"
 const val APP_TITLE = "$APP_NAME $APP_VERSION"
 
 fun main(args: Array<String>) {
-    args.forEach {
-        println(it)
-    }
     val cmdArgs = parseArgs(args)
-    println(cmdArgs)
 
     val pathsNeedsLookup =
         getTraversablePaths(
@@ -21,11 +17,6 @@ fun main(args: Array<String>) {
             filePath = cmdArgs.checkFilePath,
             slashEndianness = getSlashEndianness(cmdArgs.checkDrivePath),
         )
-
-    println("Scanning paths:")
-    pathsNeedsLookup.forEach {
-        println(it)
-    }
 
     return application {
         Window(

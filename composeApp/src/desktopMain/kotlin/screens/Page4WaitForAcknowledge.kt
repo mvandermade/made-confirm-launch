@@ -48,17 +48,7 @@ fun page4WaitForAcknowledge(
             }
             Row(modifier = rowPaddedModifier) {
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    Text(text = "Gepland om uit te voeren: ${cmdArgs.exec}")
-                }
-            }
-            Row(modifier = rowPaddedModifier) {
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    Text(
-                        text =
-                            """
-                            Deze backup popup zal via de Taakplanner regelmatig opnieuw worden getoond.
-                            """.trimIndent(),
-                    )
+                    Text(text = "Gepland om uit te voeren: ${cmdArgs.program} met argument: ${cmdArgs.argument}")
                 }
             }
         }

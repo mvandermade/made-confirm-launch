@@ -1,4 +1,4 @@
-rootProject.name = "made-cc"
+rootProject.name = "made-confirm-launch"
 // TODO monitor this preview
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

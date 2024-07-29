@@ -21,7 +21,8 @@ class Page1StartTest {
                     checkDrivePath = """/mydrive""",
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = false,
-                    exec = "freefilesync hello",
+                    argument = "hello",
+                    program = "freefilesync"
                 ),
                 arrayOf(""),
                 MockFileProvider(),
@@ -30,9 +31,6 @@ class Page1StartTest {
 
         cr.waitUntilText("Andere keer backuppen")
         cr.waitUntilText("Doorgaan >")
-        cr.waitUntilSubstringText("/mydrive")
-        cr.waitUntilSubstringText("/media/usb/mydriveE.ffs_batch")
-        cr.waitUntilSubstringText("freefilesync hello")
         cr.waitUntilSubstringText("Stap 1/5")
     }
 
@@ -44,7 +42,8 @@ class Page1StartTest {
                     checkDrivePath = """/mydrive""",
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = true,
-                    exec = "freefilesync hello",
+                    program = "freefilesync",
+                    argument = "freefilesync",
                 ),
                 arrayOf(""),
                 MockFileProvider(),
@@ -53,9 +52,6 @@ class Page1StartTest {
 
         cr.waitUntilText("Andere keer backuppen")
         cr.waitUntilText("Doorgaan >")
-        cr.waitUntilSubstringText("/mydrive")
-        cr.waitUntilSubstringText("/media/usb/mydriveE.ffs_batch")
-        cr.waitUntilSubstringText("freefilesync hello")
         cr.waitUntilSubstringText("Stap 1/5")
         cr.waitUntilSubstringText("De computer gaat alleen kijken (dryRun)")
     }

@@ -2,20 +2,24 @@ fun parseArgs(commandLineArguments: Array<String>): CmdArgs {
     // First the required ones
     var checkDrivePath: String? = null
     var checkFilePath: String? = null
-    var exec: String? = null
+    var program: String? = null
+    var argument: String? = null
     var dryRun = false
 
-    commandLineArguments.forEach { cmdArg ->
-        if (cmdArg.startsWith("-checkDrivePath=")) {
-            checkDrivePath = parseSplitArg(cmdArg)
+    commandLineArguments.forEach { input ->
+        if (input.startsWith("-checkDrivePath=")) {
+            checkDrivePath = parseSplitArg(input)
         }
-        if (cmdArg.startsWith("-checkFilePath=")) {
-            checkFilePath = parseSplitArg(cmdArg)
+        if (input.startsWith("-checkFilePath=")) {
+            checkFilePath = parseSplitArg(input)
         }
-        if (cmdArg.startsWith("-exec=")) {
-            exec = parseSplitArg(cmdArg)
+        if (input.startsWith("-argument=")) {
+            argument = parseSplitArg(input)
         }
-        if (cmdArg.startsWith("-dryRun")) {
+        if (input.startsWith("-program=")) {
+            program = parseSplitArg(input)
+        }
+        if (input.startsWith("-dryRun")) {
             dryRun = true
         }
     }
@@ -24,7 +28,8 @@ fun parseArgs(commandLineArguments: Array<String>): CmdArgs {
         checkDrivePath = checkDrivePath ?: throw IllegalArgumentException("-checkDrivePath= cannot be missing"),
         checkFilePath = checkFilePath ?: throw IllegalArgumentException("-checkFilePath= cannot be missing"),
         dryRun = dryRun,
-        exec = exec ?: throw IllegalArgumentException("-exec= cannot be missing"),
+        argument = argument,
+        program = program ?: throw IllegalArgumentException("-program= cannot be missing"),
     )
 }
 
