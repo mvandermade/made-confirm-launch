@@ -1,14 +1,16 @@
 # made-confirm-launch
 
-## 0 About
-The project was built to be able to replace a .vbs file used under windows 11 but no longer works under windows 12
+## Introduction
+The user is asked questions using popup style buttons.
+![image](https://github.com/user-attachments/assets/320d487c-edd8-437b-8a65-10aff71b8885)
+Right now the application is written in Dutch lanuage.
 
-## 1. Introduction
-The user is asked questions using popup style buttons:
-- ![screenshot01.png](screenshot01.png)
+## How to get started
+### Running jar
+- Check if you have correct `java` version
+- `java -jar org.example.project-PLATFORM-ARCH-1.0.0.jar`
 
-## 2. How to get started
-### 2.1 General
+### General
 - Select JDK17 (higher not supported right now)
 - Run allTests task `./gradlew allTests` or to run: `./gradlew composeApp:run`
 - Write some code!
@@ -21,11 +23,7 @@ The user is asked questions using popup style buttons:
   - Jetbrains Fleet
   - Kotlin plugin for VSCode
 
-### 2.2 Running jar
-- Check if you have correct `java` version
-- `java -jar org.example.project-PLATFORM-ARCH-1.0.0.jar`
-
-### 2.3 Running
+### Running in development mode
 - Running things:
   - `./gradlew composeApp:run`
   - Or use your IDE short run configs.
@@ -35,18 +33,6 @@ With spaces in argument
 ```text
 desktopRun --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync" -argument='/Users/Shared/BatchRun.ffs_batch'" -DmainClass=MainKt --quiet
 ```
-### 2.4 Running release jar
-The msi function did not work, two x64 machines gave jdk error. So build the jar and run with the microsoft jdk: (feb 2024)
-#### 2.4.1 Powershell
-```powershell
-& 'C:\Program Files\Microsoft\jdk-17.0.10.7-hotspot\bin\java.exe' -jar
-C:\Users\Martijn\Desktop\made-cc-windows-x64-1.0.1.jar
--checkDrivePath='X'
--checkFilePath='BackupScripts\SyncSettingsX.ffs_batch'
--program='powershell' -dryRun
-```
-
-- Where X is drive letter like M:\. : seems not parseable so since 1.0.1 the app will add : and :\
 
 ## 3 Some pointers
 If this warning occurs:
@@ -62,9 +48,6 @@ Useful for testing:
 cr.onRoot(useUnmergedTree = true).printToLog("TAG")
 ```
 
-## Contributing
-Please fork if you want any changes at this moment.
-
 # Footnote
 - Original KMP notes:
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
@@ -73,7 +56,6 @@ Please fork if you want any changes at this moment.
   - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
     For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
     `iosMain` would be the right folder for such calls.
-
 
 Learn more about
 - [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)
