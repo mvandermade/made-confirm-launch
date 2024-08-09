@@ -1,3 +1,5 @@
+package model
+
 enum class AppState {
     START,
     SEARCHING_ROOT,

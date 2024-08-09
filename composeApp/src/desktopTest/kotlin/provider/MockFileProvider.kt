@@ -1,4 +1,4 @@
-package providers
+package provider
 
 class MockFileProvider : FileProvider {
     override fun getRootPaths(): List<String> {

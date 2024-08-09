@@ -1,23 +1,49 @@
-package screens
+package screen
 
-import AppState
 import CmdArgs
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import appStateToIndicator
-import rowPaddedModifier
+import indicator.appStateToIndicator
+import model.AppState
+import theme.LightColors
+import theme.rowPaddedModifier
+import java.util.*
+import kotlin.concurrent.schedule
 
 @Composable
 fun page4WaitForAcknowledge(
     appState: AppState,
     cmdArgs: CmdArgs,
     requestNewState: (appState: AppState) -> Unit,
-    countdownBackupButton: Int,
 ) {
+    var countdownBackupButton by remember { mutableStateOf(10) }
+    var buttonCountDownTimer by remember { mutableStateOf<TimerTask?>(null) }
+    LaunchedEffect(true) {
+        buttonCountDownTimer =
+            Timer("CountDownTimer").schedule(0, 1000) {
+                if (appState != AppState.WAIT_FOR_ACKNOWLEDGE) return@schedule
+                if (countdownBackupButton <= 0) return@schedule
+                countdownBackupButton--
+            }
+    }
+
+    DisposableEffect("") {
+        onDispose {
+            buttonCountDownTimer?.cancel()
+            buttonCountDownTimer = null
+        }
+    }
+
     if (countdownBackupButton == 0) requestNewState(AppState.START_BACKUP)
 
     MaterialTheme {

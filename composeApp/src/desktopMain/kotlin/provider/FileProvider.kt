@@ -1,4 +1,4 @@
-package providers
+package provider
 
 interface FileProvider {
     fun getRootPaths(): List<String>

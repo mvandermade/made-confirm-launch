@@ -1,6 +1,5 @@
-package screens
+package screen
 
-import AppState
 import CmdArgs
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,12 +7,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import appStateToIndicator
-import rowPaddedModifier
+import indicator.appStateToIndicator
+import model.AppState
+import theme.rowPaddedModifier
 import java.util.*
 import kotlin.concurrent.schedule
 import kotlin.system.exitProcess
-
 
 @Composable
 fun pageStartBackup(
@@ -36,11 +35,12 @@ fun pageStartBackup(
             """.trimIndent()
 
         try {
-            val process = if (cmdArgs.argument == null) {
-                ProcessBuilder(cmdArgs.program).start()
-            } else {
-                ProcessBuilder(cmdArgs.program, cmdArgs.argument).start()
-            }
+            val process =
+                if (cmdArgs.argument == null) {
+                    ProcessBuilder(cmdArgs.program).start()
+                } else {
+                    ProcessBuilder(cmdArgs.program, cmdArgs.argument).start()
+                }
             val exitCode = process.waitFor()
             if (exitCode == 0) {
                 println("Exitting code 0")
@@ -57,7 +57,6 @@ fun pageStartBackup(
                 exitProcess(1)
             }
         }
-
     }
 
     MaterialTheme {

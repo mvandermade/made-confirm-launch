@@ -1,4 +1,4 @@
-package screens
+package screen
 
 import CmdArgs
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -7,7 +7,7 @@ import androidx.compose.ui.test.performClick
 import app
 import org.junit.Rule
 import org.junit.Test
-import providers.MockFileProvider
+import provider.MockFileProvider
 import waitUntilSubstringText
 import waitUntilText
 

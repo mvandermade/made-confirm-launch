@@ -1,6 +1,5 @@
-package screens
+package screen
 
-import AppState
 import CmdArgs
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,8 +8,10 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
-import appStateToIndicator
-import rowPaddedModifier
+import indicator.appStateToIndicator
+import model.AppState
+import theme.LightColors
+import theme.rowPaddedModifier
 import kotlin.system.exitProcess
 
 @Composable

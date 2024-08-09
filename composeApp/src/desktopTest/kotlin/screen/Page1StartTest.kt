@@ -1,10 +1,10 @@
-package screens
+package screen
 
 import CmdArgs
 import androidx.compose.ui.test.junit4.createComposeRule
 import app
 import org.junit.Rule
-import providers.MockFileProvider
+import provider.MockFileProvider
 import waitUntilSubstringText
 import waitUntilText
 import kotlin.test.Test
@@ -22,7 +22,7 @@ class Page1StartTest {
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = false,
                     argument = "hello",
-                    program = "freefilesync"
+                    program = "freefilesync",
                 ),
                 arrayOf(""),
                 MockFileProvider(),
