@@ -8,16 +8,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # @FixBeforePublish
         # Mac OS runner only 64 bits. ARM target is common now but can't produce easily deployables yet...
         # Suggestion: add 'macOS-latest' when easy to add!
-        os: [ ubuntu-latest, windows-latest ]
+        os: [ windows-latest ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          # Can't be higher
-          # @FixBeforePublish
           java-version: '17'
           distribution: 'temurin'
       - name: Validate Gradle wrapper
@@ -40,15 +37,13 @@ jobs:
           arguments: packageReleaseDistributionForCurrentOS
       - uses: actions/upload-artifact@v4
         with:
-          name: made-kmp-jvm-calculator-dist-${{ runner.os }}
+          name: made-confirm-launch-dist-${{ runner.os }}
           path: ${{ github.workspace }}/composeApp/build/compose/binaries/
       - name: packageReleaseUberJarForCurrentOS
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
         with:
           arguments: packageReleaseUberJarForCurrentOS
-        # @FixBeforePublish
-        # These are not downloadable by public users... so pretty useless step right now.
       - uses: actions/upload-artifact@v4
         with:
-          name: made-kmp-jvm-calculator-jar-${{ runner.os }}
+          name: made-confirm-launch-jar-${{ runner.os }}
           path: ${{ github.workspace }}/composeApp/build/compose/jars/
