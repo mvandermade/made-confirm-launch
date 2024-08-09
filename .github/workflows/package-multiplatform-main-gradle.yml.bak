@@ -1,11 +1,6 @@
 name: Package main Gradle project
 
 on:
-  push:
-    branches:
-      # @FixBeforePublish naming convention for branching
-      # Example: find some sensible repo like pinterest ktlint ? How do they name it?
-      - releaseAndPackage/*
   workflow_dispatch:
 
 jobs:

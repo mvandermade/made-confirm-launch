@@ -5,7 +5,7 @@ plugins {
 
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
 kotlin {
@@ -25,7 +25,7 @@ kotlin {
             // Enable tests for all platforms
             implementation(libs.kotlin.test)
             // Compose
-            implementation("org.jetbrains.compose.ui:ui-test-junit4:1.6.10")
+            implementation("org.jetbrains.compose.ui:ui-test-junit4:1.6.11")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
