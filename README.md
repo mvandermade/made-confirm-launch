@@ -1,16 +1,24 @@
 # made-confirm-launch
 
 ## Introduction
-The user is asked questions using popup style buttons.
+The user is asked questions using popup style buttons. It is aimed at some filecopy program to check if the drive is physically attached. One might need such a method when the backup drive isn't permanently attached to the host. Some checks are performed on the inputted paths to make the interface simpler.
+### Operating systems
+- Windows
+- MacOS
+- Linux
+(Follows the Kotlin Multiplatform compatibility)
+### Requirements
+- Java Runtime needs to be installed
 ![image](https://github.com/user-attachments/assets/320d487c-edd8-437b-8a65-10aff71b8885)
-Right now the application is written in Dutch lanuage.
+- (!) Right now the application is written in Dutch lanuage.
 
 ## How to get started
 ### Running jar
 - Check if you have correct `java` version
-- `java -jar org.example.project-PLATFORM-ARCH-1.0.0.jar`
+- Easy download it here for example: https://learn.microsoft.com/nl-nl/java/openjdk/download
+- `java -jar <the-name-of-the-donwload>.jar`
 
-### General
+### Developers
 - Select JDK17 (higher not supported right now)
 - Run allTests task `./gradlew allTests` or to run: `./gradlew composeApp:run`
 - Write some code!
@@ -34,7 +42,7 @@ With spaces in argument
 desktopRun --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync" -argument='/Users/Shared/BatchRun.ffs_batch'" -DmainClass=MainKt --quiet
 ```
 
-## 3 Some pointers
+## Some pointers
 If this warning occurs:
 ```text
 Could not determine the dependencies of task ':composeApp:compileKotlinDesktop'.
@@ -42,7 +50,7 @@ Could not determine the dependencies of task ':composeApp:compileKotlinDesktop'.
 ```
 Check if JDK == 17
 
-## 4 Testing
+## Testing
 Useful for testing:
 ```kotlin
 cr.onRoot(useUnmergedTree = true).printToLog("TAG")
