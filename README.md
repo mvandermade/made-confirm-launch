@@ -16,7 +16,10 @@ The user is asked questions using popup style buttons. It is aimed at some filec
 ### Running jar
 - Check if you have correct `java` version
 - Easy download it here for example: https://learn.microsoft.com/nl-nl/java/openjdk/download
-- `java -jar <the-name-of-the-donwload>.jar`
+- run `./gradlew packageUberJarForCurentOS`
+- Notice the build output such as: `composeApp/build/compose/jars/made-cc-macos-arm64-1.0.1.jar`
+- Then feed the jar into a JVM of that same platform:
+- `java -jar composeApp/build/compose/jars/made-cc-macos-arm64-1.0.1.jar -checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync -argument='/Users/Shared/BatchRun.ffs_batch'`
 
 ### Developers
 - Select JDK17 (higher not supported right now)
@@ -39,8 +42,7 @@ The user is asked questions using popup style buttons. It is aimed at some filec
   - Use the following arguments for gradle to supply --args
 With spaces in argument
 ```text
-desktopRun --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync" -argument='/Users/Shared/BatchRun.ffs_batch'" -DmainClass=MainKt --quiet
-```
+desktopRun --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync -argument='/Users/Shared/BatchRun.ffs_batch'" -DmainClass=MainKt --quiet```
 
 ## Some pointers
 If this warning occurs:
