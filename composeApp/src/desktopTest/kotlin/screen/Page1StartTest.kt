@@ -25,7 +25,6 @@ class Page1StartTest {
                     argument = "hello",
                     program = "freefilesync",
                 ),
-                arrayOf(""),
                 MockFileProvider(),
                 ::exitReasonMock,
             )
@@ -47,7 +46,6 @@ class Page1StartTest {
                     program = "freefilesync",
                     argument = "freefilesync",
                 ),
-                arrayOf(""),
                 MockFileProvider(),
                 ::exitReasonMock,
             )

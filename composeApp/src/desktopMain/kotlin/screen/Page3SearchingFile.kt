@@ -1,5 +1,6 @@
 package screen
 
+import CmdArgs
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,6 +18,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import getSlashEndianness
+import getTraversablePaths
 import indicator.appStateToIndicator
 import model.AppState
 import provider.FileProvider
@@ -27,7 +30,7 @@ import kotlin.concurrent.schedule
 @Composable
 fun page3SearchingFile(
     fileProvider: FileProvider,
-    pathsNeedsLookup: Array<String>,
+    cmdArgs: CmdArgs,
     rootWithSlashEndian: MutableState<String?>,
     appProgress: MutableState<Long>,
     requestNewState: (appState: AppState) -> Unit,
@@ -36,6 +39,13 @@ fun page3SearchingFile(
     var isFileDetected by remember { mutableStateOf(false) }
     var scannerProgress by remember { mutableStateOf(90L) }
     val fileDetectedTimer = remember { mutableStateOf<TimerTask?>(null) }
+
+    val pathsNeedsLookup =
+        getTraversablePaths(
+            drivePath = cmdArgs.checkDrivePath,
+            filePath = cmdArgs.checkFilePath,
+            slashEndianness = getSlashEndianness(cmdArgs.checkDrivePath),
+        )
 
     DisposableEffect("") {
         onDispose {

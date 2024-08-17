@@ -27,7 +27,6 @@ class Page4WaitForAcknowledgeTest {
                     program = "freefilesync",
                     argument = "hello",
                 ),
-                arrayOf("""A:\Agreed"""),
                 MockFileProvider(),
                 ::exitReasonMock,
             )

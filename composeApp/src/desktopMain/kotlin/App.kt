@@ -10,7 +10,6 @@ import screen.pageStartBackup
 @Composable
 fun app(
     cmdArgs: CmdArgs,
-    pathsNeedsLookup: Array<String>,
     fileProvider: FileProvider,
     exitProcessWithReason: (reason: ExitReason) -> Unit,
 ) {
@@ -41,7 +40,7 @@ fun app(
         AppState.SEARCHING_FILE ->
             page3SearchingFile(
                 fileProvider,
-                pathsNeedsLookup,
+                cmdArgs,
                 rootWithSlashEndian,
                 appProgress,
                 ::requestNewState,

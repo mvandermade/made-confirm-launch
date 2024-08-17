@@ -27,7 +27,6 @@ class Page5StartBackupTest {
                     program = "freefilesync",
                     argument = "hello",
                 ),
-                arrayOf("""A:\Agreed"""),
                 MockFileProvider(),
                 ::exitReasonMock,
             )
@@ -55,7 +54,6 @@ class Page5StartBackupTest {
                     program = "bash",
                     argument = "-c",
                 ),
-                arrayOf("""A:\Agreed"""),
                 MockFileProvider(),
                 ::exitReasonMock,
             )
@@ -83,7 +81,6 @@ class Page5StartBackupTest {
                     program = "qwertyuiop",
                     argument = "hello",
                 ),
-                arrayOf("""A:\Agreed"""),
                 MockFileProvider(),
                 ::exitReasonMock,
             )

@@ -3,7 +3,9 @@ package screen
 import CmdArgs
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.printToLog
 import app
 import mocks.exitReasonMock
 import org.junit.Rule
@@ -27,7 +29,6 @@ class Page3SearchingFileTest {
                     program = "freefilesync",
                     argument = "hello",
                 ),
-                arrayOf("""A:\DUMMYPATH""", """B:\ALSODUMMY"""),
                 MockFileProvider(),
                 ::exitReasonMock,
             )
@@ -36,6 +37,8 @@ class Page3SearchingFileTest {
         cr.onNodeWithText("Doorgaan >").performClick()
         cr.waitUntilText("Stap 3/5")
         cr.waitUntilSubstringText("Aan het zoeken naar bestanden via meerdere combinaties...")
-        cr.waitUntilSubstringText("""A:\DUMMYPATH, B:\ALSODUMMY""")
+        cr.onRoot(useUnmergedTree = true).printToLog("TAG")
+
+        cr.waitUntilSubstringText("""A:\MOCKED, A:\A:\MOCKED, A:\:\A:\MOCKED, A:\\A:\MOCKED""")
     }
 }
