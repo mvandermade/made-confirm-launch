@@ -4,8 +4,8 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import provider.FileProviderJava
 
-const val APP_NAME = "made-cc (confirm copy)"
-const val APP_VERSION = "1.0.1"
+const val APP_NAME = "Made Confirm Launch"
+const val APP_VERSION = "1.0.2"
 const val APP_TITLE = "$APP_NAME $APP_VERSION"
 
 fun main(args: Array<String>) {
@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
             title = APP_TITLE,
             state = rememberWindowState(width = 440.dp, height = 350.dp),
         ) {
-            app(cmdArgs, pathsNeedsLookup, FileProviderJava())
+            app(cmdArgs, pathsNeedsLookup, FileProviderJava(), ::exitProcessWithReason)
         }
     }
 }

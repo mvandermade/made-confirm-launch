@@ -5,6 +5,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import app
+import mocks.exitReasonMock
 import org.junit.Rule
 import org.junit.Test
 import provider.MockFileProvider
@@ -28,6 +29,7 @@ class Page3SearchingFileTest {
                 ),
                 arrayOf("""A:\DUMMYPATH""", """B:\ALSODUMMY"""),
                 MockFileProvider(),
+                ::exitReasonMock,
             )
         }
         cr.waitUntilText("Doorgaan >")

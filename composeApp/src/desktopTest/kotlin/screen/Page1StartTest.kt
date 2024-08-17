@@ -3,6 +3,7 @@ package screen
 import CmdArgs
 import androidx.compose.ui.test.junit4.createComposeRule
 import app
+import mocks.exitReasonMock
 import org.junit.Rule
 import provider.MockFileProvider
 import waitUntilSubstringText
@@ -26,6 +27,7 @@ class Page1StartTest {
                 ),
                 arrayOf(""),
                 MockFileProvider(),
+                ::exitReasonMock,
             )
         }
 
@@ -47,6 +49,7 @@ class Page1StartTest {
                 ),
                 arrayOf(""),
                 MockFileProvider(),
+                ::exitReasonMock,
             )
         }
 

@@ -12,6 +12,7 @@ fun app(
     cmdArgs: CmdArgs,
     pathsNeedsLookup: Array<String>,
     fileProvider: FileProvider,
+    exitProcessWithReason: (reason: ExitReason) -> Unit,
 ) {
     var appState by remember { mutableStateOf(AppState.START) }
 
@@ -27,7 +28,7 @@ fun app(
     val rootWithSlashEndian = remember { mutableStateOf<String?>(null) }
 
     when (appState) {
-        AppState.START -> pageStart(appState, cmdArgs, ::requestNewState)
+        AppState.START -> pageStart(appState, cmdArgs, ::requestNewState, exitProcessWithReason)
         AppState.SEARCHING_ROOT ->
             page2SearchRoot(
                 fileProvider,
@@ -52,6 +53,6 @@ fun app(
                 cmdArgs,
                 ::requestNewState,
             )
-        AppState.START_BACKUP -> pageStartBackup(appState, cmdArgs)
+        AppState.START_BACKUP -> pageStartBackup(appState, cmdArgs, exitProcessWithReason)
     }
 }

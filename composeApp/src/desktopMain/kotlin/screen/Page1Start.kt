@@ -1,6 +1,7 @@
 package screen
 
 import CmdArgs
+import ExitReason
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,13 +13,13 @@ import indicator.appStateToIndicator
 import model.AppState
 import theme.LightColors
 import theme.rowPaddedModifier
-import kotlin.system.exitProcess
 
 @Composable
 fun pageStart(
     appState: AppState,
     cmdArgs: CmdArgs,
     requestNewState: (appState: AppState) -> Unit,
+    exitProcessWithReason: (reason: ExitReason) -> Unit,
 ) {
     MaterialTheme {
         Column {
@@ -34,7 +35,7 @@ fun pageStart(
                 Column {
                     Button(
                         modifier = Modifier.fillMaxWidth(0.5f),
-                        onClick = { exitProcess(2) },
+                        onClick = { exitProcessWithReason(ExitReason.EXIT_USER_ABORTED) },
                         colors =
                             ButtonDefaults.buttonColors(
                                 backgroundColor = LightColors.Secondary.color,
