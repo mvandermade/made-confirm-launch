@@ -50,7 +50,6 @@ fun pageStartBackup(
         } catch (e: Exception) {
             topBarText = "Error tijdens starten backup applicatie :( Sluit over 5 sec..."
             appText = "Fout: ${e.message}"
-            e.printStackTrace()
             Timer("StartBackupIndicator").schedule(5_000, 5_000) {
                 exitProcessWithReason(ExitReason.EXIT_AFTER_CHILD_PROCESS_LAUNCH_CAUSES_EXCEPTION)
             }
