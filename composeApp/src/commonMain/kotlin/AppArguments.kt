@@ -1,4 +1,5 @@
-data class CmdArgs(
+// The app arguments has non-nullables
+data class AppArguments(
     val checkDrivePath: String,
     val checkFilePath: String,
     val dryRun: Boolean,

@@ -1,6 +1,6 @@
 package screen
 
-import CmdArgs
+import AppArguments
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,7 +33,7 @@ import kotlin.concurrent.schedule
 @Composable
 fun page2SearchRoot(
     fileProvider: FileProvider,
-    cmdArgs: CmdArgs,
+    appArguments: AppArguments,
     rootWithSlashEndian: MutableState<String?>,
     appProgress: MutableState<Long>,
     requestNewState: (appState: AppState) -> Unit,
@@ -67,7 +67,7 @@ fun page2SearchRoot(
 
                 // Detect slash-endian
                 val roots = fileProvider.getRootPaths()
-                val root: String? = getRootStartsWithOrNull(cmdArgs.checkDrivePath, roots)
+                val root: String? = getRootStartsWithOrNull(appArguments.checkDrivePath, roots)
 
                 isDriveReady =
                     if (root == null) {
@@ -87,7 +87,7 @@ fun page2SearchRoot(
         Column {
             Row {
                 TopAppBar(
-                    title = { Text(text = "Zet schijf aan: ${cmdArgs.checkDrivePath}") },
+                    title = { Text(text = "Zet schijf aan: ${appArguments.checkDrivePath}") },
                 )
             }
             Row {

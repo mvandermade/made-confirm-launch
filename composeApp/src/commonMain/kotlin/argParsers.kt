@@ -1,4 +1,4 @@
-fun parseArgs(commandLineArguments: Array<String>): CmdArgs {
+fun fetchArguments(commandLineArguments: Array<String>): CmdArguments {
     // First the required ones
     var checkDrivePath: String? = null
     var checkFilePath: String? = null
@@ -24,12 +24,17 @@ fun parseArgs(commandLineArguments: Array<String>): CmdArgs {
         }
     }
 
-    return CmdArgs(
-        checkDrivePath = checkDrivePath ?: throw IllegalArgumentException("-checkDrivePath= cannot be missing"),
-        checkFilePath = checkFilePath ?: throw IllegalArgumentException("-checkFilePath= cannot be missing"),
+    // Inform command line users of missing arguments
+    if (checkDrivePath == null) println("-checkDrivePath= cannot be missing")
+    if (checkFilePath == null) println("-checkFilePath= cannot be missing")
+    if (program == null) println("-program= cannot be missing")
+
+    return CmdArguments(
+        checkDrivePath = checkDrivePath,
+        checkFilePath = checkFilePath,
         dryRun = dryRun,
         argument = argument,
-        program = program ?: throw IllegalArgumentException("-program= cannot be missing"),
+        program = program,
     )
 }
 

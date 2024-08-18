@@ -1,6 +1,6 @@
 package screen
 
-import CmdArgs
+import AppArguments
 import ExitReason
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,18 +17,18 @@ import kotlin.concurrent.schedule
 @Composable
 fun pageStartBackup(
     appState: AppState,
-    cmdArgs: CmdArgs,
+    appArguments: AppArguments,
     exitProcessWithReason: (reason: ExitReason) -> Unit,
 ) {
     var topBarText = "Dryrun"
     var appText =
         """
-        Programma zou zijn: ${cmdArgs.program} met argument: ${cmdArgs.argument}. Nu niks mee gedaan vanwege argument -dryRun
+        Programma zou zijn: ${appArguments.program} met argument: ${appArguments.argument}. Nu niks mee gedaan vanwege argument -dryRun
         Applicatie kan worden gesloten.
         """.trimIndent()
 
-    if (!cmdArgs.dryRun) {
-        topBarText = "Backupprogramma `${cmdArgs.argument}`wordt gestart..."
+    if (!appArguments.dryRun) {
+        topBarText = "Backupprogramma `${appArguments.argument}`wordt gestart..."
         appText =
             """
             Deze applicatie wacht totdat de backuptool klaar is.
@@ -36,10 +36,10 @@ fun pageStartBackup(
             """.trimIndent()
         try {
             val process =
-                if (cmdArgs.argument == null) {
-                    ProcessBuilder(cmdArgs.program).start()
+                if (appArguments.argument == null) {
+                    ProcessBuilder(appArguments.program).start()
                 } else {
-                    ProcessBuilder(cmdArgs.program, cmdArgs.argument).start()
+                    ProcessBuilder(appArguments.program, appArguments.argument).start()
                 }
             val exitCode = process.waitFor()
             if (exitCode == 0) {

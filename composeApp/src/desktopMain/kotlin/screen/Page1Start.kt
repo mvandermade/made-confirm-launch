@@ -1,6 +1,6 @@
 package screen
 
-import CmdArgs
+import AppArguments
 import ExitReason
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,7 +17,7 @@ import theme.rowPaddedModifier
 @Composable
 fun pageStart(
     appState: AppState,
-    cmdArgs: CmdArgs,
+    appArguments: AppArguments,
     requestNewState: (appState: AppState) -> Unit,
     exitProcessWithReason: (reason: ExitReason) -> Unit,
 ) {
@@ -66,7 +66,7 @@ fun pageStart(
                 """         
                 """.trimIndent()
 
-            if (cmdArgs.dryRun) {
+            if (appArguments.dryRun) {
                 text +=
                     """
                     

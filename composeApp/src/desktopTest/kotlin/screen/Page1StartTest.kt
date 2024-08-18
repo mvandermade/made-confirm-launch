@@ -1,6 +1,6 @@
 package screen
 
-import CmdArgs
+import CmdArguments
 import androidx.compose.ui.test.junit4.createComposeRule
 import app
 import mocks.exitReasonMock
@@ -18,7 +18,7 @@ class Page1StartTest {
     fun `Frontend shows initial page`() {
         cr.setContent {
             app(
-                CmdArgs(
+                CmdArguments(
                     checkDrivePath = """/mydrive""",
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = false,
@@ -39,7 +39,7 @@ class Page1StartTest {
     fun `Frontend shows initial page dryRun`() {
         cr.setContent {
             app(
-                CmdArgs(
+                CmdArguments(
                     checkDrivePath = """/mydrive""",
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = true,

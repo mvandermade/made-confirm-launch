@@ -1,6 +1,6 @@
 package screen
 
-import CmdArgs
+import CmdArguments
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -20,7 +20,7 @@ class Page4WaitForAcknowledgeTest {
     fun `Shows the current path mismatch with provider`() {
         cr.setContent {
             app(
-                CmdArgs(
+                CmdArguments(
                     checkDrivePath = """A:\""",
                     checkFilePath = """A:\Agreed""",
                     dryRun = false,

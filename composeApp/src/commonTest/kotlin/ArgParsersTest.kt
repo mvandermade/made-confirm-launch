@@ -16,7 +16,7 @@ class ArgParsersTest {
                 "-argument=myfile.txt",
             )
 
-        val cmdArgs = parseArgs(input)
+        val cmdArgs = fetchArguments(input)
         assertEquals("/", cmdArgs.checkDrivePath)
         assertEquals("/Users/mvandermade/myfile.txt", cmdArgs.checkFilePath)
         assertEquals(false, cmdArgs.dryRun)
@@ -34,7 +34,7 @@ class ArgParsersTest {
                 "-argument=myfile.txt?q=007",
             )
 
-        val cmdArgs = parseArgs(input)
+        val cmdArgs = fetchArguments(input)
         assertEquals("/", cmdArgs.checkDrivePath)
         assertEquals("/Users/mvandermade/myfile.txt", cmdArgs.checkFilePath)
         assertEquals(false, cmdArgs.dryRun)
@@ -52,7 +52,7 @@ class ArgParsersTest {
                 "-argument=myfile.txt?q=007",
             )
         assertFailsWith<IllegalArgumentException> {
-            parseArgs(input)
+            fetchArguments(input)
         }
     }
 
@@ -66,7 +66,7 @@ class ArgParsersTest {
                 "-argument=myfile.txt?q=007",
             )
         assertFailsWith<IllegalArgumentException> {
-            parseArgs(input)
+            fetchArguments(input)
         }
     }
 
@@ -79,7 +79,7 @@ class ArgParsersTest {
                 "-programDUMMY=nano myfile.txt?q=007",
             )
         assertFailsWith<IllegalArgumentException> {
-            parseArgs(input)
+            fetchArguments(input)
         }
     }
 }

@@ -1,6 +1,6 @@
 package screen
 
-import CmdArgs
+import AppArguments
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +23,7 @@ import kotlin.concurrent.schedule
 @Composable
 fun page4WaitForAcknowledge(
     appState: AppState,
-    cmdArgs: CmdArgs,
+    appArguments: AppArguments,
     requestNewState: (appState: AppState) -> Unit,
 ) {
     var countdownBackupButton by remember { mutableStateOf(10) }
@@ -74,7 +74,11 @@ fun page4WaitForAcknowledge(
             }
             Row(modifier = rowPaddedModifier) {
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    Text(text = "Gepland om uit te voeren: ${cmdArgs.program} met argument: ${cmdArgs.argument}")
+                    Text(
+                        text =
+                            "Gepland om uit te voeren: ${appArguments.program} " +
+                                "met argument: ${appArguments.argument}",
+                    )
                 }
             }
         }

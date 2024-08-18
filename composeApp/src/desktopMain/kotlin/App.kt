@@ -9,7 +9,7 @@ import screen.pageStartBackup
 
 @Composable
 fun app(
-    cmdArgs: CmdArgs,
+    appArguments: AppArguments,
     fileProvider: FileProvider,
     exitProcessWithReason: (reason: ExitReason) -> Unit,
 ) {
@@ -27,11 +27,11 @@ fun app(
     val rootWithSlashEndian = remember { mutableStateOf<String?>(null) }
 
     when (appState) {
-        AppState.START -> pageStart(appState, cmdArgs, ::requestNewState, exitProcessWithReason)
+        AppState.START -> pageStart(appState, appArguments, ::requestNewState, exitProcessWithReason)
         AppState.SEARCHING_ROOT ->
             page2SearchRoot(
                 fileProvider,
-                cmdArgs,
+                appArguments,
                 rootWithSlashEndian,
                 appProgress,
                 ::requestNewState,
@@ -40,7 +40,7 @@ fun app(
         AppState.SEARCHING_FILE ->
             page3SearchingFile(
                 fileProvider,
-                cmdArgs,
+                appArguments,
                 rootWithSlashEndian,
                 appProgress,
                 ::requestNewState,
@@ -49,9 +49,9 @@ fun app(
         AppState.WAIT_FOR_ACKNOWLEDGE ->
             page4WaitForAcknowledge(
                 appState,
-                cmdArgs,
+                appArguments,
                 ::requestNewState,
             )
-        AppState.START_BACKUP -> pageStartBackup(appState, cmdArgs, exitProcessWithReason)
+        AppState.START_BACKUP -> pageStartBackup(appState, appArguments, exitProcessWithReason)
     }
 }
