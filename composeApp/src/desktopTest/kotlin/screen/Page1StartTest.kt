@@ -1,5 +1,6 @@
 package screen
 
+import AppArguments
 import CmdArguments
 import androidx.compose.ui.test.junit4.createComposeRule
 import app
@@ -18,7 +19,7 @@ class Page1StartTest {
     fun `Frontend shows initial page`() {
         cr.setContent {
             app(
-                CmdArguments(
+                AppArguments(
                     checkDrivePath = """/mydrive""",
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = false,
@@ -39,7 +40,7 @@ class Page1StartTest {
     fun `Frontend shows initial page dryRun`() {
         cr.setContent {
             app(
-                CmdArguments(
+                AppArguments(
                     checkDrivePath = """/mydrive""",
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = true,

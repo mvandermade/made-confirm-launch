@@ -51,9 +51,10 @@ class ArgParsersTest {
                 "-program=nano",
                 "-argument=myfile.txt?q=007",
             )
-        assertFailsWith<IllegalArgumentException> {
-            fetchArguments(input)
-        }
+
+        val cmdArgs = fetchArguments(input)
+        assertEquals(null, cmdArgs.checkDrivePath)
+
     }
 
     @Test
@@ -65,9 +66,8 @@ class ArgParsersTest {
                 "-program=nano",
                 "-argument=myfile.txt?q=007",
             )
-        assertFailsWith<IllegalArgumentException> {
-            fetchArguments(input)
-        }
+        val cmdArgs = fetchArguments(input)
+        assertEquals(null, cmdArgs.checkFilePath)
     }
 
     @Test
@@ -78,8 +78,7 @@ class ArgParsersTest {
                 "-checkFilePath=/Users/mvandermade/myfile.txt",
                 "-programDUMMY=nano myfile.txt?q=007",
             )
-        assertFailsWith<IllegalArgumentException> {
-            fetchArguments(input)
-        }
+        val cmdArgs = fetchArguments(input)
+        assertEquals(null, cmdArgs.program)
     }
 }

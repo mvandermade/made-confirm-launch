@@ -1,5 +1,6 @@
 package screen
 
+import AppArguments
 import CmdArguments
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -22,7 +23,7 @@ class Page3SearchingFileTest {
     fun `Shows the current filepath mismatch with provider`() {
         cr.setContent {
             app(
-                CmdArguments(
+                AppArguments(
                     checkDrivePath = """A:\""",
                     checkFilePath = """A:\MOCKED""",
                     dryRun = false,

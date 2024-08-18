@@ -1,5 +1,6 @@
 package screen
 
+import AppArguments
 import CmdArguments
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -20,7 +21,7 @@ class Page2SearchingRootTest {
     fun `Shows the current drivepath mismatch with provider`() {
         cr.setContent {
             app(
-                CmdArguments(
+                AppArguments(
                     checkDrivePath = """/mydrive""",
                     checkFilePath = "/media/usb/mydriveE.ffs_batch",
                     dryRun = false,

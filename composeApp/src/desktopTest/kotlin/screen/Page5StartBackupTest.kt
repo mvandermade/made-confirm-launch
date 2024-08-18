@@ -1,5 +1,6 @@
 package screen
 
+import AppArguments
 import CmdArguments
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -20,7 +21,7 @@ class Page5StartBackupTest {
     fun `Shows start backup, dryrun`() {
         cr.setContent {
             app(
-                CmdArguments(
+                AppArguments(
                     checkDrivePath = """A:\""",
                     checkFilePath = """A:\Agreed""",
                     dryRun = true,
@@ -47,7 +48,7 @@ class Page5StartBackupTest {
     fun `Shows launch ok because bash is in most peoples path on windows install wsl to get it`() {
         cr.setContent {
             app(
-                CmdArguments(
+                AppArguments(
                     checkDrivePath = """A:\""",
                     checkFilePath = """A:\Agreed""",
                     dryRun = false,
@@ -74,7 +75,7 @@ class Page5StartBackupTest {
     fun `Shows an error because on the test runner the program is not found`() {
         cr.setContent {
             app(
-                CmdArguments(
+                AppArguments(
                     checkDrivePath = """A:\""",
                     checkFilePath = """A:\Agreed""",
                     dryRun = false,
