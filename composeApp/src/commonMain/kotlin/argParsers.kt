@@ -46,3 +46,45 @@ fun parseSplitArg(arg: String): String {
         throw IllegalArgumentException("Missing argument for $arg")
     }
 }
+
+fun argumentsOrNull(
+    checkDrivePath: String?,
+    checkFilePath: String?,
+    dryRun: Boolean,
+    program: String?,
+    argument: String?,
+): AppArguments? {
+    return AppArguments(
+        checkDrivePath ?: return null,
+        checkFilePath ?: return null,
+        dryRun,
+        program ?: return null,
+        argument,
+    )
+}
+
+fun generateArgumentsPreview(
+    checkDrivePath: String?,
+    checkFilePath: String?,
+    dryRun: Boolean,
+    program: String?,
+    argument: String?,
+): String {
+    var preview = "java -jar program.jar"
+    if (checkDrivePath != null) preview += " -checkDrivePath=${surroundIfSpaces(checkDrivePath)}"
+    if (checkFilePath != null) preview += " -checkFilePath=${surroundIfSpaces(checkFilePath)}"
+    if (dryRun) preview += " -dryRun=true"
+    if (program != null) preview += " -program=${surroundIfSpaces(program)}"
+    if (argument != null) preview += " -argument=${surroundIfSpaces(argument)}"
+
+    return preview
+}
+
+// The command line arguments cannot contain raw spaces
+fun surroundIfSpaces(str: String): String {
+    return if (str.contains(" ")) {
+        "'$str'"
+    } else {
+        str
+    }
+}
