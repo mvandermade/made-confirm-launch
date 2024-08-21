@@ -1,7 +1,6 @@
 package screen
 
 import AppArguments
-import CmdArguments
 import androidx.compose.ui.test.junit4.createComposeRule
 import app
 import mocks.exitReasonMock

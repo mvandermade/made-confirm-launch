@@ -10,26 +10,33 @@ enum class SlashEndian(val slashToUse: String) {
     FORWARD_SLASH("""/"""),
 }
 
-fun getSlashEndianness(root: String) =
-    if (root.contains("""\""")) {
+fun getSlashEndianness(root: String?): SlashEndian {
+    if (root == null) return SlashEndian.FORWARD_SLASH
+
+    return if (root.contains("""\""")) {
         SlashEndian.BACK_SLASH
     } else {
         SlashEndian.FORWARD_SLASH
     }
+}
 
 fun getTraversablePaths(
-    drivePath: String,
+    drivePath: String?,
     filePath: String,
     slashEndianness: SlashEndian,
 ): Array<String> {
-    return arrayOf(
-        // For unix systems
-        filePath,
-        // Windows correct
-        """$drivePath$filePath""",
-        // Windows only supplied letter
-        """$drivePath:${slashEndianness.slashToUse}$filePath""",
-        // Windows supplied for ex. C:
-        """$drivePath${slashEndianness.slashToUse}$filePath""",
-    )
+    return if (drivePath == null) {
+        arrayOf(filePath)
+    } else {
+        arrayOf(
+            // For unix systems
+            filePath,
+            // Windows correct
+            """$drivePath$filePath""",
+            // Windows only supplied letter
+            """$drivePath:${slashEndianness.slashToUse}$filePath""",
+            // Windows supplied for ex. C:
+            """$drivePath${slashEndianness.slashToUse}$filePath""",
+        )
+    }
 }

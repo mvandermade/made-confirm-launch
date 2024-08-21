@@ -1,6 +1,5 @@
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 
 class ArgParsersTest {
     @Test
@@ -54,7 +53,6 @@ class ArgParsersTest {
 
         val cmdArgs = fetchArguments(input)
         assertEquals(null, cmdArgs.checkDrivePath)
-
     }
 
     @Test

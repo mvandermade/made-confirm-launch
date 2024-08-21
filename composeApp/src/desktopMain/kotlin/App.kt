@@ -23,29 +23,34 @@ fun app(
         appState = requestedNewAppState
     }
 
-    // Globals
-    val rootWithSlashEndian = remember { mutableStateOf<String?>(null) }
-
     when (appState) {
         AppState.START -> pageStart(appState, appArguments, ::requestNewState, exitProcessWithReason)
-        AppState.SEARCHING_ROOT ->
-            page2SearchRoot(
-                fileProvider,
-                appArguments,
-                rootWithSlashEndian,
-                appProgress,
-                ::requestNewState,
-                appState,
-            )
+        AppState.SEARCHING_ROOT -> {
+            if (appArguments.checkDrivePath != null) {
+                page2SearchRoot(
+                    fileProvider,
+                    appArguments.checkDrivePath,
+                    appProgress,
+                    ::requestNewState,
+                    appState,
+                )
+            } else {
+                requestNewState(AppState.SEARCHING_FILE)
+            }
+        }
         AppState.SEARCHING_FILE ->
-            page3SearchingFile(
-                fileProvider,
-                appArguments,
-                rootWithSlashEndian,
-                appProgress,
-                ::requestNewState,
-                appState,
-            )
+            if (appArguments.checkFilePath != null) {
+                page3SearchingFile(
+                    fileProvider,
+                    appArguments.checkDrivePath,
+                    appArguments.checkFilePath,
+                    appProgress,
+                    ::requestNewState,
+                    appState,
+                )
+            } else {
+                requestNewState(AppState.WAIT_FOR_ACKNOWLEDGE)
+            }
         AppState.WAIT_FOR_ACKNOWLEDGE ->
             page4WaitForAcknowledge(
                 appState,

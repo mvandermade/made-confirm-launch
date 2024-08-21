@@ -1,7 +1,6 @@
 package screen
 
 import AppArguments
-import CmdArguments
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
@@ -41,5 +40,28 @@ class Page3SearchingFileTest {
         cr.onRoot(useUnmergedTree = true).printToLog("TAG")
 
         cr.waitUntilSubstringText("""A:\MOCKED, A:\A:\MOCKED, A:\:\A:\MOCKED, A:\\A:\MOCKED""")
+    }
+
+    @Test
+    fun `Shows the current filepath mismatch with null drive with provider`() {
+        cr.setContent {
+            app(
+                AppArguments(
+                    checkDrivePath = null,
+                    checkFilePath = """A:\MOCKED""",
+                    dryRun = false,
+                    program = "freefilesync",
+                    argument = "hello",
+                ),
+                MockFileProvider(),
+                ::exitReasonMock,
+            )
+        }
+        cr.waitUntilText("Doorgaan >")
+        cr.onNodeWithText("Doorgaan >").performClick()
+        cr.waitUntilText("Stap 3/5")
+        cr.waitUntilSubstringText("Aan het zoeken naar bestanden via meerdere combinaties...")
+
+        cr.waitUntilSubstringText("""A:\MOCKED""")
     }
 }

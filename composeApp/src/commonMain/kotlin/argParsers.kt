@@ -25,8 +25,6 @@ fun fetchArguments(commandLineArguments: Array<String>): CmdArguments {
     }
 
     // Inform command line users of missing arguments
-    if (checkDrivePath == null) println("-checkDrivePath= cannot be missing")
-    if (checkFilePath == null) println("-checkFilePath= cannot be missing")
     if (program == null) println("-program= cannot be missing")
 
     return CmdArguments(
@@ -55,8 +53,8 @@ fun argumentsOrNull(
     argument: String?,
 ): AppArguments? {
     return AppArguments(
-        checkDrivePath ?: return null,
-        checkFilePath ?: return null,
+        checkDrivePath,
+        checkFilePath,
         dryRun,
         program ?: return null,
         argument,
@@ -71,11 +69,11 @@ fun generateArgumentsPreview(
     argument: String?,
 ): String {
     var preview = "java -jar program.jar"
-    if (checkDrivePath != null) preview += " -checkDrivePath=${surroundIfSpaces(checkDrivePath)}"
-    if (checkFilePath != null) preview += " -checkFilePath=${surroundIfSpaces(checkFilePath)}"
+    if (checkDrivePath != null && checkDrivePath != "") preview += " -checkDrivePath=${surroundIfSpaces(checkDrivePath)}"
+    if (checkFilePath != null && checkFilePath != "") preview += " -checkFilePath=${surroundIfSpaces(checkFilePath)}"
     if (dryRun) preview += " -dryRun=true"
-    if (program != null) preview += " -program=${surroundIfSpaces(program)}"
-    if (argument != null) preview += " -argument=${surroundIfSpaces(argument)}"
+    if (program != null && program != "") preview += " -program=${surroundIfSpaces(program)}"
+    if (argument != null && argument != "") preview += " -argument=${surroundIfSpaces(argument)}"
 
     return preview
 }

@@ -1,6 +1,5 @@
 package screen
 
-import AppArguments
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,8 +32,7 @@ import kotlin.concurrent.schedule
 @Composable
 fun page2SearchRoot(
     fileProvider: FileProvider,
-    appArguments: AppArguments,
-    rootWithSlashEndian: MutableState<String?>,
+    checkDrivePath: String,
     appProgress: MutableState<Long>,
     requestNewState: (appState: AppState) -> Unit,
     appState: AppState,
@@ -42,6 +40,7 @@ fun page2SearchRoot(
     var scanDrivePathTimer by remember { mutableStateOf<TimerTask?>(null) }
     var drivesFoundIndicator by remember { mutableStateOf("...") }
     var scannerProgress by remember { mutableStateOf(0) }
+    val rootWithSlashEndian = remember { mutableStateOf<String?>(null) }
 
     DisposableEffect("") {
         onDispose {
@@ -67,7 +66,7 @@ fun page2SearchRoot(
 
                 // Detect slash-endian
                 val roots = fileProvider.getRootPaths()
-                val root: String? = getRootStartsWithOrNull(appArguments.checkDrivePath, roots)
+                val root: String? = getRootStartsWithOrNull(checkDrivePath, roots)
 
                 isDriveReady =
                     if (root == null) {
@@ -87,7 +86,7 @@ fun page2SearchRoot(
         Column {
             Row {
                 TopAppBar(
-                    title = { Text(text = "Zet schijf aan: ${appArguments.checkDrivePath}") },
+                    title = { Text(text = "Zet schijf aan: $checkDrivePath") },
                 )
             }
             Row {

@@ -1,6 +1,5 @@
 package screen
 
-import AppArguments
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,8 +29,8 @@ import kotlin.concurrent.schedule
 @Composable
 fun page3SearchingFile(
     fileProvider: FileProvider,
-    appArguments: AppArguments,
-    rootWithSlashEndian: MutableState<String?>,
+    checkDrivePath: String?,
+    checkFilePath: String,
     appProgress: MutableState<Long>,
     requestNewState: (appState: AppState) -> Unit,
     appState: AppState,
@@ -42,9 +41,9 @@ fun page3SearchingFile(
 
     val pathsNeedsLookup =
         getTraversablePaths(
-            drivePath = appArguments.checkDrivePath,
-            filePath = appArguments.checkFilePath,
-            slashEndianness = getSlashEndianness(appArguments.checkDrivePath),
+            drivePath = checkDrivePath,
+            filePath = checkFilePath,
+            slashEndianness = getSlashEndianness(checkDrivePath),
         )
 
     DisposableEffect("") {
@@ -75,21 +74,18 @@ fun page3SearchingFile(
     LaunchedEffect(true) {
         fileDetectedTimer.value =
             Timer("FileDetectedTimer").schedule(0, 1000L) {
-                // Early return when drive is not ready FIXME how to suspend scheduled task?
-                rootWithSlashEndian.value?.let { _ ->
-                    if (isFileDetected) {
-                        appProgress.value = 100
-                        return@schedule
-                    }
-                    isFileDetected = fileProvider.doesFileExists(pathsNeedsLookup)
+                if (isFileDetected) {
+                    appProgress.value = 100
+                    return@schedule
+                }
+                isFileDetected = fileProvider.doesFileExists(pathsNeedsLookup)
 
-                    if (!isFileDetected) {
-                        advanceLinearProgress()
-                        return@schedule
-                    }
+                if (!isFileDetected) {
+                    advanceLinearProgress()
+                    return@schedule
+                }
 
-                    requestNewState(AppState.WAIT_FOR_ACKNOWLEDGE)
-                } ?: return@schedule
+                requestNewState(AppState.WAIT_FOR_ACKNOWLEDGE)
             }
     }
 

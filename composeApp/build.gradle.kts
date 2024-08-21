@@ -39,8 +39,8 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "made-cc"
-            packageVersion = "1.0.3"
+            packageName = "made-cl"
+            packageVersion = "1.0.4"
         }
     }
 }

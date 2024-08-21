@@ -38,6 +38,11 @@ class PathFunctionsTest {
     }
 
     @Test
+    fun `Expect forward slash null falls back`() {
+        assertEquals(SlashEndian.FORWARD_SLASH, getSlashEndianness(null))
+    }
+
+    @Test
     fun `Expect traveable paths backslash style`() {
         val traversablePaths =
             getTraversablePaths(
@@ -57,5 +62,17 @@ class PathFunctionsTest {
         assertNotNull(
             traversablePaths.contains("""C:\C:\Windows\run32.dll"""),
         )
+    }
+
+    @Test
+    fun `Expect unix style path with null drive`() {
+        val traversablePaths =
+            getTraversablePaths(
+                drivePath = null,
+                filePath = "/mnt/media/md5sum.txt",
+                slashEndianness = SlashEndian.FORWARD_SLASH,
+            )
+
+        assertEquals(traversablePaths[0], "/mnt/media/md5sum.txt")
     }
 }
