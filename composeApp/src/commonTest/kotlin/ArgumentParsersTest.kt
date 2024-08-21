@@ -1,7 +1,7 @@
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class ArgParsersTest {
+class ArgumentParsersTest {
     @Test
     fun `Parse correctly`() {
         // Gradle would need:
@@ -78,5 +78,23 @@ class ArgParsersTest {
             )
         val cmdArgs = fetchArguments(input)
         assertEquals(null, cmdArgs.program)
+    }
+
+    @Test
+    fun `Generate arguments preview null shows base`() {
+        val result = generateArgumentsPreview(null, null, false, null, null)
+        assertEquals("java -jar program.jar", result)
+    }
+
+    @Test
+    fun `Generate arguments empty string shows base`() {
+        val result = generateArgumentsPreview("", "", false, "", "")
+        assertEquals("java -jar program.jar", result)
+    }
+
+    @Test
+    fun `Generate arguments short string shows all`() {
+        val result = generateArgumentsPreview("a", "b", false, "c", "d")
+        assertEquals("java -jar program.jar -checkDrivePath=a -checkFilePath=b -program=c -argument=d", result)
     }
 }

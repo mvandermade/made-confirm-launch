@@ -69,11 +69,21 @@ fun generateArgumentsPreview(
     argument: String?,
 ): String {
     var preview = "java -jar program.jar"
-    if (checkDrivePath != null && checkDrivePath != "") preview += " -checkDrivePath=${surroundIfSpaces(checkDrivePath)}"
-    if (checkFilePath != null && checkFilePath != "") preview += " -checkFilePath=${surroundIfSpaces(checkFilePath)}"
-    if (dryRun) preview += " -dryRun=true"
-    if (program != null && program != "") preview += " -program=${surroundIfSpaces(program)}"
-    if (argument != null && argument != "") preview += " -argument=${surroundIfSpaces(argument)}"
+    if (checkDrivePath != null && checkDrivePath != "") {
+        preview += " -checkDrivePath=${surroundIfSpaces(checkDrivePath)}"
+    }
+    if (checkFilePath != null && checkFilePath != "") {
+        preview += " -checkFilePath=${surroundIfSpaces(checkFilePath)}"
+    }
+    if (dryRun) {
+        preview += " -dryRun=true"
+    }
+    if (program != null && program != "") {
+        preview += " -program=${surroundIfSpaces(program)}"
+    }
+    if (argument != null && argument != "") {
+        preview += " -argument=${surroundIfSpaces(argument)}"
+    }
 
     return preview
 }
