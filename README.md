@@ -13,6 +13,8 @@ The user is asked questions using popup style buttons. It is aimed at some filec
 - (!) Right now the application is written in Dutch lanuage.
 
 ## How to get started
+### Running app
+- MacOS: `open made-cl.app --args -program=freefilesync -description=hello`
 ### Running jar
 - Check if you have correct `java` version
 - Easy download it here for example: https://learn.microsoft.com/nl-nl/java/openjdk/download
