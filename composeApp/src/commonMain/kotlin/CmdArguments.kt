@@ -4,4 +4,5 @@ data class CmdArguments(
     val dryRun: Boolean,
     val program: String?,
     val argument: String?,
+    val description: String?,
 )

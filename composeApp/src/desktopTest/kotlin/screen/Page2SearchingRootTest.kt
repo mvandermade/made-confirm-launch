@@ -26,6 +26,7 @@ class Page2SearchingRootTest {
                     dryRun = false,
                     program = "freefilesync",
                     argument = "hello",
+                    description = "descr",
                 ),
                 MockFileProvider(),
                 ::exitReasonMock,

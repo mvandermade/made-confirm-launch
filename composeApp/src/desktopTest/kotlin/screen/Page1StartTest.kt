@@ -24,6 +24,7 @@ class Page1StartTest {
                     dryRun = false,
                     argument = "hello",
                     program = "freefilesync",
+                    description = "descr",
                 ),
                 MockFileProvider(),
                 ::exitReasonMock,
@@ -33,6 +34,7 @@ class Page1StartTest {
         cr.waitUntilText("Andere keer backuppen")
         cr.waitUntilText("Doorgaan >")
         cr.waitUntilSubstringText("Stap 1/5")
+        cr.waitUntilText("descr")
     }
 
     @Test
@@ -45,6 +47,7 @@ class Page1StartTest {
                     dryRun = true,
                     program = "freefilesync",
                     argument = "freefilesync",
+                    description = "descr",
                 ),
                 MockFileProvider(),
                 ::exitReasonMock,

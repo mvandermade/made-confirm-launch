@@ -26,7 +26,8 @@ fun app(
     when (appState) {
         AppState.START -> pageStart(appState, appArguments, ::requestNewState, exitProcessWithReason)
         AppState.SEARCHING_ROOT -> {
-            if (appArguments.checkDrivePath != null) {
+            // TODO test this?
+            if (appArguments.checkDrivePath != null && appArguments.checkDrivePath != "") {
                 page2SearchRoot(
                     fileProvider,
                     appArguments.checkDrivePath,
@@ -39,7 +40,8 @@ fun app(
             }
         }
         AppState.SEARCHING_FILE ->
-            if (appArguments.checkFilePath != null) {
+            // TODO test this?
+            if (appArguments.checkFilePath != null && appArguments.checkFilePath != "") {
                 page3SearchingFile(
                     fileProvider,
                     appArguments.checkDrivePath,

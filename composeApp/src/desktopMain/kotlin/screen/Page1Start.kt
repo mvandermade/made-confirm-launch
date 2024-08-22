@@ -67,12 +67,10 @@ fun pageStart(
                 """.trimIndent()
 
             if (appArguments.dryRun) {
-                text +=
-                    """
-                    
-                    De computer gaat alleen kijken (dryRun)
-                    """.trimIndent()
+                text += "De computer gaat alleen kijken (dryRun)"
             }
+
+            appArguments.description?.let { text += it }
 
             Row(modifier = rowPaddedModifier) {
                 Text(fontFamily = FontFamily.Monospace, text = text)

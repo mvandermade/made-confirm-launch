@@ -26,6 +26,7 @@ fun initScreen(
     dryRun: MutableState<Boolean>,
     program: MutableState<String?>,
     argument: MutableState<String?>,
+    description: MutableState<String?>,
 ) {
     // Save the formdata until submit is pressed. This is because null will default to ""
     var formCheckDrivePath by remember { mutableStateOf(checkDrivePath.value) }
@@ -33,6 +34,7 @@ fun initScreen(
     var formDryRun by remember { mutableStateOf(dryRun.value) }
     var formProgram by remember { mutableStateOf(program.value) }
     var formArgument: String? by remember { mutableStateOf(argument.value) }
+    var formDescription: String? by remember { mutableStateOf(description.value) }
 
     MaterialTheme {
         Column {
@@ -68,7 +70,7 @@ fun initScreen(
                     modifier = Modifier.fillMaxWidth(0.5f),
                 ) {
                     TextField(
-                        label = { Text("-program") },
+                        label = { Text("-program *(required)") },
                         maxLines = 2,
                         value = formProgram ?: "",
                         onValueChange = { formProgram = it },
@@ -84,6 +86,19 @@ fun initScreen(
                 }
             }
             Row {
+                Column(
+                    horizontalAlignment = Alignment.Start,
+                    modifier = Modifier.fillMaxWidth(0.5f),
+                ) {
+                    TextField(
+                        label = { Text("-description") },
+                        maxLines = 2,
+                        value = formDescription ?: "",
+                        onValueChange = { formDescription = it },
+                    )
+                }
+            }
+            Row {
                 Column {
                     Button(
                         onClick = {
@@ -92,6 +107,7 @@ fun initScreen(
                             dryRun.value = formDryRun
                             program.value = formProgram
                             argument.value = formArgument
+                            description.value = formDescription
                         },
                     ) {
                         Text("Retry")
@@ -122,6 +138,7 @@ fun initScreen(
                                 formDryRun,
                                 formProgram,
                                 formArgument,
+                                formDescription,
                             ),
                         onValueChange = { },
                     )

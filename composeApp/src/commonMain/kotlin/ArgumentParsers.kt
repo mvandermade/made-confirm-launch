@@ -5,6 +5,7 @@ fun fetchArguments(commandLineArguments: Array<String>): CmdArguments {
     var program: String? = null
     var argument: String? = null
     var dryRun = false
+    var description: String? = null
 
     commandLineArguments.forEach { input ->
         if (input.startsWith("-checkDrivePath=")) {
@@ -22,6 +23,9 @@ fun fetchArguments(commandLineArguments: Array<String>): CmdArguments {
         if (input.startsWith("-dryRun")) {
             dryRun = true
         }
+        if (input.startsWith("-description=")) {
+            description = parseSplitArg(input)
+        }
     }
 
     // Inform command line users of missing arguments
@@ -33,6 +37,7 @@ fun fetchArguments(commandLineArguments: Array<String>): CmdArguments {
         dryRun = dryRun,
         argument = argument,
         program = program,
+        description = description,
     )
 }
 
@@ -51,6 +56,7 @@ fun argumentsOrNull(
     dryRun: Boolean,
     program: String?,
     argument: String?,
+    description: String?,
 ): AppArguments? {
     return AppArguments(
         checkDrivePath,
@@ -58,6 +64,7 @@ fun argumentsOrNull(
         dryRun,
         program ?: return null,
         argument,
+        description,
     )
 }
 
@@ -67,8 +74,9 @@ fun generateArgumentsPreview(
     dryRun: Boolean,
     program: String?,
     argument: String?,
+    description: String?,
 ): String {
-    var preview = "java -jar program.jar"
+    var preview = "./made-cl"
     if (checkDrivePath != null && checkDrivePath != "") {
         preview += " -checkDrivePath=${surroundIfSpaces(checkDrivePath)}"
     }
@@ -76,13 +84,16 @@ fun generateArgumentsPreview(
         preview += " -checkFilePath=${surroundIfSpaces(checkFilePath)}"
     }
     if (dryRun) {
-        preview += " -dryRun=true"
+        preview += " -dryRun"
     }
     if (program != null && program != "") {
         preview += " -program=${surroundIfSpaces(program)}"
     }
     if (argument != null && argument != "") {
         preview += " -argument=${surroundIfSpaces(argument)}"
+    }
+    if (description != null && argument != "") {
+        preview += " -description=${surroundIfSpaces(description)}"
     }
 
     return preview

@@ -5,4 +5,5 @@ data class AppArguments(
     val dryRun: Boolean,
     val program: String,
     val argument: String?,
+    val description: String?,
 )

@@ -13,8 +13,11 @@ fun init(cmdArguments: CmdArguments) {
     val dryRun = remember { mutableStateOf(cmdArguments.dryRun) }
     val program = remember { mutableStateOf(cmdArguments.program) }
     val argument = remember { mutableStateOf(cmdArguments.argument) }
+    val description = remember { mutableStateOf(cmdArguments.description) }
 
-    argumentsOrNull(checkDrivePath.value, checkFilePath.value, dryRun.value, program.value, argument.value)?.let {
+    argumentsOrNull(
+        checkDrivePath.value, checkFilePath.value, dryRun.value, program.value, argument.value, description.value,
+    )?.let {
         app(it, FileProviderJava(), ::exitProcessWithReason)
-    } ?: initScreen(checkDrivePath, checkFilePath, dryRun, program, argument)
+    } ?: initScreen(checkDrivePath, checkFilePath, dryRun, program, argument, description)
 }
