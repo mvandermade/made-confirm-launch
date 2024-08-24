@@ -1,33 +1,31 @@
 # made-confirm-launch
 
 ## Introduction
-The user is asked questions using popup style buttons. It is aimed at some filecopy program to check if the drive is physically attached. One might need such a method when the backup drive isn't permanently attached to the host. Some checks are performed on the inputted paths to make the interface simpler.
+The user is asked questions using popup style buttons. The goal is to be able to let the user attach their correct backup drive before starting an external backup util.
+
+1. When agument program is missing you get presented a helper:![image](docs/screenshot00.png)
+2. The regular screen when fed correct arguments ![image](docs/screenshot01.png)
+3. Checks if drive is present ![image](docs/screenshot02.png)
+4. Checks if file is present ![image](docs/screenshot03.png)
+5. Every check OK countdown in place because some disks are slow... ![image](docs/screenshot04.png)
+
 ### Operating systems
-- Windows
-- MacOS
-- Linux
-(Follows the Kotlin Multiplatform compatibility)
+Follows the Kotlin Multiplatform compatibility: build your own executable using Gradle for now.
+
 ### Requirements
-- Java Runtime needs to be installed
-![image](https://github.com/user-attachments/assets/320d487c-edd8-437b-8a65-10aff71b8885)
-- (!) Right now the application is written in Dutch lanuage.
+- JDK17 to build an executable for your own system.
+- Right now the application is written in Dutch language, so you need to be able to read that.
 
 ## How to get started
-### Running app
-- MacOS: `open made-cl.app --args -program=freefilesync -description=hello`
-### Running jar
-- Check if you have correct `java` version
-- Easy download it here for example: https://learn.microsoft.com/nl-nl/java/openjdk/download
-- run `./gradlew packageUberJarForCurentOS`
-- Notice the build output such as: `composeApp/build/compose/jars/made-cc-macos-arm64-1.0.1.jar`
-- Then feed the jar into a JVM of that same platform:
-- `java -jar composeApp/build/compose/jars/made-cc-macos-arm64-1.0.1.jar -checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync -argument='/Users/Shared/BatchRun.ffs_batch'`
+- All platforms: `./gradlew packageUberJarForCurentOS`
+- Windows: `./gradlew.bat packageReleaseMsi`
+- Mac: `./gradlew packageReleaseDmg`
+- Debian flavours: `./gradlew packageReleaseDeb`
 
 ### Developers
 - Select JDK17 (higher not supported right now)
 - Run allTests task `./gradlew allTests` or to run: `./gradlew composeApp:run`
 - Write some code!
-# Note
 - Ktlint is used for linting. CI fails when you forget it.
   - `./gradlew ktlintFormat`
 - Customized editorconfig to match compose.
@@ -44,7 +42,8 @@ The user is asked questions using popup style buttons. It is aimed at some filec
   - Use the following arguments for gradle to supply --args
 With spaces in argument
 ```text
-desktopRun --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync -argument='/Users/Shared/BatchRun.ffs_batch'" -DmainClass=MainKt --quiet```
+desktopRun --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync -argument='/Users/Shared/BatchRun.ffs_batch'" -DmainClass=MainKt --quiet
+```
 
 ## Some pointers
 If this warning occurs:
