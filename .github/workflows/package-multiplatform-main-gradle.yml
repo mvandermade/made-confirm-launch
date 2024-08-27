@@ -10,7 +10,7 @@ jobs:
       matrix:
         # Mac OS runner only 64 bits. ARM target is common now but can't produce easily deployables yet...
         # Suggestion: add 'macOS-latest' when easy to add!
-        os: [ windows-latest ]
+        os: [ windows-latest, macos-latest, ubuntu-latest ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
