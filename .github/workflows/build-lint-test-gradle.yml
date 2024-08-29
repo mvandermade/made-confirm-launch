@@ -14,6 +14,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Setup Gradle for caching benefits
+        uses: gradle/actions/setup-gradle@v3          
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
       - name: Lint with ktLint
