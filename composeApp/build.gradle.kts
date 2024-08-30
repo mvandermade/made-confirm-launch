@@ -14,6 +14,7 @@ kotlin {
 
     sourceSets {
         val desktopMain by getting
+        val desktopTest by getting
 
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -24,11 +25,13 @@ kotlin {
         commonTest.dependencies {
             // Enable tests for all platforms
             implementation(libs.kotlin.test)
-            // Compose
-            implementation("org.jetbrains.compose.ui:ui-test-junit4:1.6.11")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+        }
+        desktopTest.dependencies {
+            // Compose
+            implementation("org.jetbrains.compose.ui:ui-test-junit4:1.6.11")
         }
     }
 }
