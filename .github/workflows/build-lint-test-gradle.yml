@@ -3,7 +3,6 @@ name: Lint Build Test Gradle project
 on:
   workflow_dispatch:
   push:
-  pull_request:
 
 jobs:
   lint-build-test-gradle-project:
