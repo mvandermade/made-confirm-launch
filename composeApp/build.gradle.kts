@@ -31,7 +31,7 @@ kotlin {
         }
         desktopTest.dependencies {
             // Compose
-            implementation("org.jetbrains.compose.ui:ui-test-junit4:1.7.0")
+            implementation("org.jetbrains.compose.ui:ui-test-junit4:1.8.0+dev1955")
         }
     }
 }
