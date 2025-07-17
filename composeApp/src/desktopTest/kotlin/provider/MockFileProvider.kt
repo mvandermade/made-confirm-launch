@@ -1,12 +1,11 @@
 package provider
 
 class MockFileProvider : FileProvider {
-    override fun getRootPaths(): List<String> {
-        return listOf(
+    override fun getRootPaths(): List<String> =
+        listOf(
             """A:\""",
             """/""",
         )
-    }
 
     override fun doesFileExists(pathsNeedsLookup: Array<String>): Boolean {
         return if (pathsNeedsLookup.isNotEmpty()) {

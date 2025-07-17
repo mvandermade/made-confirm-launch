@@ -1,11 +1,11 @@
 fun getRootStartsWithOrNull(
     driveStartsWith: String,
     roots: List<String>,
-): String? {
-    return roots.find { root -> root.startsWith(driveStartsWith) }
-}
+): String? = roots.find { root -> root.startsWith(driveStartsWith) }
 
-enum class SlashEndian(val slashToUse: String) {
+enum class SlashEndian(
+    val slashToUse: String,
+) {
     BACK_SLASH("""\"""),
     FORWARD_SLASH("""/"""),
 }
@@ -24,8 +24,8 @@ fun getTraversablePaths(
     drivePath: String?,
     filePath: String,
     slashEndianness: SlashEndian,
-): Array<String> {
-    return if (drivePath == null) {
+): Array<String> =
+    if (drivePath == null) {
         arrayOf(filePath)
     } else {
         arrayOf(
@@ -39,4 +39,3 @@ fun getTraversablePaths(
             """$drivePath${slashEndianness.slashToUse}$filePath""",
         )
     }
-}

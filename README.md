@@ -22,7 +22,7 @@ Follows the Kotlin Multiplatform compatibility: build your own executable using 
 - Mac: `./gradlew packageReleaseDmg`
 - Debian flavours: `./gradlew packageReleaseDeb`
 
-- Typically you want to run the program periodically to enforce backups. You can run the program as-is and later supply the command line arguments you want, only -program= is mandatory.
+- Typically, you want to run the program periodically to enforce backups. You can run the program as-is and later supply the command line arguments you want, only -program= is mandatory.
 
 ### Developers
 - Select JDK17 (higher not supported right now)
@@ -59,6 +59,11 @@ Check if JDK == 17
 Useful for testing:
 ```kotlin
 cr.onRoot(useUnmergedTree = true).printToLog("TAG")
+```
+
+## Dependency updates
+```shell
+gradle dependencyUpdates
 ```
 
 # Footnote
