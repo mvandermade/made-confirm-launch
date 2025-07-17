@@ -100,10 +100,9 @@ fun generateArgumentsPreview(
 }
 
 // The command line arguments cannot contain raw spaces
-fun surroundIfSpaces(str: String): String {
-    return if (str.contains(" ")) {
+fun surroundIfSpaces(str: String): String =
+    if (str.contains(" ")) {
         "'$str'"
     } else {
         str
     }
-}
