@@ -2,7 +2,8 @@ package indicator
 
 import model.AppState
 
-val AMOUNT_OF_STATES = AppState.entries.size
+// Todo make another flow for the license info
+val AMOUNT_OF_STATES = AppState.entries.size - 1
 
 fun appStateToIndicator(appState: AppState): String =
     "Stap " +
@@ -12,4 +13,5 @@ fun appStateToIndicator(appState: AppState): String =
             AppState.SEARCHING_FILE -> "${AppState.SEARCHING_FILE.ordinal + 1}/$AMOUNT_OF_STATES"
             AppState.WAIT_FOR_ACKNOWLEDGE -> "${AppState.WAIT_FOR_ACKNOWLEDGE.ordinal + 1}/$AMOUNT_OF_STATES"
             AppState.START_BACKUP -> "${AppState.START_BACKUP.ordinal + 1}/$AMOUNT_OF_STATES"
+            AppState.LICENSE -> "${AppState.LICENSE.ordinal + 1}/$AMOUNT_OF_STATES"
         }

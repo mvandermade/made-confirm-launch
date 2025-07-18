@@ -2,6 +2,8 @@ package screen
 
 import AppArguments
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import app
 import mocks.exitReasonMock
 import org.junit.Rule
@@ -58,5 +60,28 @@ class Page1StartTest {
         cr.waitUntilText("Doorgaan >")
         cr.waitUntilSubstringText("Stap 1/5")
         cr.waitUntilSubstringText("De computer gaat alleen kijken (dryRun)")
+    }
+
+    @Test
+    fun `Clicking the license button shows text containing`() {
+        cr.setContent {
+            app(
+                AppArguments(
+                    checkDrivePath = """/mydrive""",
+                    checkFilePath = "/media/usb/mydriveE.ffs_batch",
+                    dryRun = false,
+                    program = "freefilesync",
+                    argument = "freefilesync",
+                    description = "descr",
+                ),
+                MockFileProvider(),
+                ::exitReasonMock,
+            )
+        }
+
+        cr.waitUntilText("Licentie")
+        cr.onNodeWithText("Licentie").performClick()
+
+        cr.waitUntilSubstringText("Martijn van der Made")
     }
 }

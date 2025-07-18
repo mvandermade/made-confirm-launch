@@ -6,4 +6,5 @@ enum class AppState {
     SEARCHING_FILE,
     WAIT_FOR_ACKNOWLEDGE,
     START_BACKUP,
+    LICENSE,
 }

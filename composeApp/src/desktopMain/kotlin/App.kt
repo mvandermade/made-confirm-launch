@@ -1,6 +1,7 @@
 import androidx.compose.runtime.*
 import model.AppState
 import provider.FileProvider
+import screen.license
 import screen.page2SearchRoot
 import screen.page3SearchingFile
 import screen.page4WaitForAcknowledge
@@ -24,6 +25,7 @@ fun app(
     }
 
     when (appState) {
+        AppState.LICENSE -> license(::requestNewState)
         AppState.START -> pageStart(appState, appArguments, ::requestNewState, exitProcessWithReason)
         AppState.SEARCHING_ROOT -> {
             // TODO test this?
