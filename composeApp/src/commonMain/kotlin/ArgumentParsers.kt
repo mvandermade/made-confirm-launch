@@ -76,7 +76,7 @@ fun generateArgumentsPreview(
     argument: String?,
     description: String?,
 ): String {
-    var preview = "./made-cl"
+    var preview = "./made-confirm-lauch"
     if (checkDrivePath != null && checkDrivePath != "") {
         preview += " -checkDrivePath=${surroundIfSpaces(checkDrivePath)}"
     }

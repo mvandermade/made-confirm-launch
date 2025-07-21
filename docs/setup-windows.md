@@ -5,7 +5,7 @@ Fill in:
 
 Programma/script:
 ```
-"C:\Program files\made-cl\made-cl.exe"
+"C:\Program files\made-confirm-lauch\made-confirm-lauch.exe"
 ```
 
 Parameters:

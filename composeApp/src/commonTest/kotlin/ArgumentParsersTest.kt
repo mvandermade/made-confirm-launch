@@ -83,20 +83,20 @@ class ArgumentParsersTest {
     @Test
     fun `Generate arguments preview null shows base`() {
         val result = generateArgumentsPreview(null, null, false, null, null, null)
-        assertEquals("./made-cl", result)
+        assertEquals("./made-confirm-lauch", result)
     }
 
     @Test
     fun `Generate arguments empty string shows base`() {
         val result = generateArgumentsPreview("", "", false, "", "", "")
-        assertEquals("./made-cl", result)
+        assertEquals("./made-confirm-lauch", result)
     }
 
     @Test
     fun `Generate arguments short string shows all`() {
         val result = generateArgumentsPreview("a", "b", true, "c", "d", "descr")
         assertEquals(
-            "./made-cl -checkDrivePath=a -checkFilePath=b -dryRun -program=c -argument=d -description=descr",
+            "./made-confirm-lauch -checkDrivePath=a -checkFilePath=b -dryRun -program=c -argument=d -description=descr",
             result,
         )
     }

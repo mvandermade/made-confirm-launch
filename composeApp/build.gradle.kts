@@ -49,8 +49,8 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "made-cl"
-            packageVersion = "1.0.7"
+            packageName = "made-confirm-launch"
+            packageVersion = "1.0.8"
         }
     }
 }
