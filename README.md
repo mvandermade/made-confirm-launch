@@ -1,5 +1,9 @@
 # made-confirm-launch
 
+Downloads avaiable under releases to the right from here >>>
+
+Steps only for windows. Default location: C:\Program Files\made-confirm-launch
+
 ## Introduction
 The user is asked questions using popup style buttons. The goal is to be able to let the user attach their correct backup drive before starting an external backup util.
 
