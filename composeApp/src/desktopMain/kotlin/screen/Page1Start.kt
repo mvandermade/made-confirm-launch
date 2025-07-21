@@ -75,6 +75,17 @@ fun pageStart(
             Row(modifier = rowPaddedModifier) {
                 Text(fontFamily = FontFamily.Monospace, text = text)
             }
+            Row {
+                Button(
+                    onClick = { requestNewState(AppState.LICENSE) },
+                    colors =
+                        ButtonDefaults.buttonColors(
+                            backgroundColor = MaterialTheme.colors.background,
+                        ),
+                ) {
+                    Text("Licentie")
+                }
+            }
         }
     }
 }
