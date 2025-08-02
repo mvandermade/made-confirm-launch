@@ -36,7 +36,7 @@ fun app(
                     appProgress,
                     ::requestNewState,
                     appState,
-                    appArguments.description
+                    appArguments.description,
                 )
             } else {
                 requestNewState(AppState.SEARCHING_FILE)
@@ -51,7 +51,7 @@ fun app(
                     appProgress,
                     ::requestNewState,
                     appState,
-                    appArguments.description
+                    appArguments.description,
                 )
             } else {
                 requestNewState(AppState.WAIT_FOR_ACKNOWLEDGE)

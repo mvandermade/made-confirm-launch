@@ -37,7 +37,7 @@ fun page2SearchRoot(
     appProgress: MutableState<Long>,
     requestNewState: (appState: AppState) -> Unit,
     appState: AppState,
-    appDescription: String?
+    appDescription: String?,
 ) {
     var scanDrivePathTimer by remember { mutableStateOf<TimerTask?>(null) }
     var drivesFoundIndicator by remember { mutableStateOf("...") }

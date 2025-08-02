@@ -35,7 +35,7 @@ fun page3SearchingFile(
     appProgress: MutableState<Long>,
     requestNewState: (appState: AppState) -> Unit,
     appState: AppState,
-    appDescription: String?
+    appDescription: String?,
 ) {
     var isFileDetected by remember { mutableStateOf(false) }
     var scannerProgress by remember { mutableStateOf(90L) }
@@ -139,7 +139,6 @@ fun page3SearchingFile(
             Row(modifier = rowPaddedModifier) {
                 Text(fontFamily = FontFamily.Monospace, text = appDescription ?: "")
             }
-
         }
     }
 }
