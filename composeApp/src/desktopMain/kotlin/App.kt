@@ -36,13 +36,13 @@ fun app(
                     appProgress,
                     ::requestNewState,
                     appState,
+                    appArguments.description
                 )
             } else {
                 requestNewState(AppState.SEARCHING_FILE)
             }
         }
         AppState.SEARCHING_FILE ->
-            // TODO test this?
             if (appArguments.checkFilePath != null && appArguments.checkFilePath != "") {
                 page3SearchingFile(
                     fileProvider,
@@ -51,6 +51,7 @@ fun app(
                     appProgress,
                     ::requestNewState,
                     appState,
+                    appArguments.description
                 )
             } else {
                 requestNewState(AppState.WAIT_FOR_ACKNOWLEDGE)

@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
 import getRootStartsWithOrNull
 import indicator.appStateToIndicator
 import model.AppState
@@ -36,6 +37,7 @@ fun page2SearchRoot(
     appProgress: MutableState<Long>,
     requestNewState: (appState: AppState) -> Unit,
     appState: AppState,
+    appDescription: String?
 ) {
     var scanDrivePathTimer by remember { mutableStateOf<TimerTask?>(null) }
     var drivesFoundIndicator by remember { mutableStateOf("...") }
@@ -135,6 +137,10 @@ fun page2SearchRoot(
                             """.trimIndent(),
                     )
                 }
+            }
+
+            Row(modifier = rowPaddedModifier) {
+                Text(fontFamily = FontFamily.Monospace, text = appDescription ?: "")
             }
         }
     }

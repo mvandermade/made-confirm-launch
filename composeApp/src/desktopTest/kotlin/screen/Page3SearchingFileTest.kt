@@ -37,6 +37,7 @@ class Page3SearchingFileTest {
         cr.waitUntilText("Doorgaan >")
         cr.onNodeWithText("Doorgaan >").performClick()
         cr.waitUntilText("Stap 3/5")
+        cr.waitUntilText("descr")
         cr.waitUntilSubstringText("Aan het zoeken naar bestanden via meerdere combinaties...")
         cr.onRoot(useUnmergedTree = true).printToLog("TAG")
 
