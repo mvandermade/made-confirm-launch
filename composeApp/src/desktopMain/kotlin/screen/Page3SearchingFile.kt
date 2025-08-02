@@ -17,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
 import getSlashEndianness
 import getTraversablePaths
 import indicator.appStateToIndicator
@@ -34,6 +35,7 @@ fun page3SearchingFile(
     appProgress: MutableState<Long>,
     requestNewState: (appState: AppState) -> Unit,
     appState: AppState,
+    appDescription: String?,
 ) {
     var isFileDetected by remember { mutableStateOf(false) }
     var scannerProgress by remember { mutableStateOf(90L) }
@@ -132,6 +134,10 @@ fun page3SearchingFile(
                             """.trimIndent(),
                     )
                 }
+            }
+
+            Row(modifier = rowPaddedModifier) {
+                Text(fontFamily = FontFamily.Monospace, text = appDescription ?: "")
             }
         }
     }

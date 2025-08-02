@@ -50,7 +50,22 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "made-confirm-launch"
-            packageVersion = "1.0.8"
+            packageVersion = "1.0.9"
         }
     }
+}
+
+tasks.register<Copy>("copyPreCommitHook") {
+    description = "Copy pre-commit git hook from the scripts to the .git/hooks folder."
+    group = "githooks"
+    outputs.upToDateWhen { false }
+    filePermissions {
+        user {
+            read = true
+            execute = true
+        }
+        other.execute = false
+    }
+    from("$rootDir/scripts/pre-commit")
+    into("$rootDir/.git/hooks/")
 }
