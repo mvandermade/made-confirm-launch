@@ -16,33 +16,15 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/wrapper-validation@v4
       - name: Lint with ktLint
-        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
-        with:
-          arguments: ktlintCheck
+        run: ./gradlew ktlintCheck
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
-        with:
-          arguments: build
-      - name: Test with Kotlin Test
-        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
-        with:
-          arguments: allTests
+        run: ./gradlew build
       - name: Package Release Distribution For Current OS
-        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
-        with:
-          arguments: packageReleaseDistributionForCurrentOS
+        run: ./gradlew packageReleaseDistributionForCurrentOS
       - uses: actions/upload-artifact@v4
         with:
           name: made-confirm-launch-dist-${{ runner.os }}
           path: ${{ github.workspace }}/composeApp/build/compose/binaries/
-      - name: packageReleaseUberJarForCurrentOS
-        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
-        with:
-          arguments: packageReleaseUberJarForCurrentOS
-      - uses: actions/upload-artifact@v4
-        with:
-          name: made-confirm-launch-jar-${{ runner.os }}
-          path: ${{ github.workspace }}/composeApp/build/compose/jars/

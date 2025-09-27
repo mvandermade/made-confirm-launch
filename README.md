@@ -69,6 +69,11 @@ cr.onRoot(useUnmergedTree = true).printToLog("TAG")
 ```shell
 gradle dependencyUpdates
 ```
+Used gradle actions
+- https://github.com/gradle/actions
+- Followed https://kmp.jetbrains.com/?desktop=true&includeTests=true to do dependency upgrades
+- JDK 17 only because of jpackage https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-compatibility-and-versioning.html#jetpack-compose-and-compose-multiplatform-release-cycles
+
 
 # Footnote
 - Original KMP notes:

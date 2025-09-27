@@ -11,13 +11,10 @@ plugins {
 }
 
 kotlin {
-    jvm("desktop")
+    jvm()
     jvmToolchain(17)
 
     sourceSets {
-        val desktopMain by getting
-        val desktopTest by getting
-
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -32,11 +29,11 @@ kotlin {
             // Enable tests for all platforms
             implementation(libs.kotlin.test)
         }
-        desktopMain.dependencies {
+        jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
         }
-        desktopTest.dependencies {
+        jvmTest.dependencies {
             // Compose
             implementation(libs.compose.ui.test.junit4)
         }
@@ -50,7 +47,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "made-confirm-launch"
-            packageVersion = "1.0.9"
+            packageVersion = "1.0.10"
         }
     }
 }
