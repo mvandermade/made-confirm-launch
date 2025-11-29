@@ -1,8 +1,18 @@
 # made-confirm-launch
 
-Downloads avaiable under releases to the right from here >>>
+## Running
+1. Downloads avaiable under releases to the right from here, or build your own.
 
-Steps only for windows. Default location: C:\Program Files\made-confirm-launch
+Windows:
+1. Install using the installer
+2. Setup Task Scheduler (via start menu)
+3. Create a new task (editting looks like this)
+<img width="566" height="624" alt="image" src="https://github.com/user-attachments/assets/e87c55a3-c408-45de-b9ac-9016a06ae5d7" />
+Example:
+- Program/script: "C:\Program files\made-confirm-launch\made-confirm-launch.exe"
+- Parameters: -checkDrivePath=G:\ -program="C:\Program Files\FreeFileSync\FreeFileSync" -argument=G:\SyncSettings.ffs_batch -description="Connect the blue colored disk to begin!"
+
+... done!
 
 ## Introduction
 The user is asked questions using popup style buttons. The goal is to be able to let the user attach their correct backup drive before starting an external backup util.
@@ -16,18 +26,6 @@ The user is asked questions using popup style buttons. The goal is to be able to
 ### Operating systems
 Follows the Kotlin Multiplatform compatibility: build your own executable using Gradle for now.
 
-### Requirements
-- JDK17 to build an executable for your own system.
-- Right now the application is written in Dutch language, so you need to be able to read that.
-
-## How to get started
-- All platforms: `./gradlew packageUberJarForCurentOS`
-- Windows: `./gradlew.bat packageReleaseMsi`
-- Mac: `./gradlew packageReleaseDmg`
-- Debian flavours: `./gradlew packageReleaseDeb`
-
-- Typically, you want to run the program periodically to enforce backups. You can run the program as-is and later supply the command line arguments you want, only -program= is mandatory.
-
 ### Developers
 - Select JDK17 (higher not supported right now)
 - Run allTests task `./gradlew allTests` or to run: `./gradlew composeApp:run`
@@ -39,38 +37,18 @@ Follows the Kotlin Multiplatform compatibility: build your own executable using 
   - Jetbrains IntelIJ
   - Jetbrains Fleet
   - Kotlin plugin for VSCode
-
-### Running in development mode
-- Running things:
-  - `./gradlew composeApp:run`
-  - Or use your IDE short run configs.
-  - Use @Preview annotation in devTools folder.
-  - Use the following arguments for gradle to supply --args
-With spaces in argument
-```text
-desktopRun --args="-checkDrivePath=/ -checkFilePath=/Users/Shared/myfile.txt -program=freefilesync -argument='/Users/Shared/BatchRun.ffs_batch'" -DmainClass=MainKt --quiet
-```
-
-## Some pointers
-If this warning occurs:
-```text
-Could not determine the dependencies of task ':composeApp:compileKotlinDesktop'.
-> WindowsRegistry is not supported on this operating system.
-```
-Check if JDK == 17
-
-## Testing
+ 
+### Testing
 Useful for testing:
 ```kotlin
 cr.onRoot(useUnmergedTree = true).printToLog("TAG")
 ```
 
-## Dependency updates
+### Dependency updates
 ```shell
 gradle dependencyUpdates
 ```
 
-# Footnote
 - Original KMP notes:
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:
