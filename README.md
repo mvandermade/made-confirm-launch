@@ -5,12 +5,19 @@
 
 Windows:
 1. Install using the installer
-2. Setup Task Scheduler (via start menu)
+2. Open Task Scheduler (via start menu)
 3. Create a new task (editting looks like this)
 <img width="566" height="624" alt="image" src="https://github.com/user-attachments/assets/e87c55a3-c408-45de-b9ac-9016a06ae5d7" />
-Example:
-- Program/script: "C:\Program files\made-confirm-launch\made-confirm-launch.exe"
-- Parameters: -checkDrivePath=G:\ -program="C:\Program Files\FreeFileSync\FreeFileSync" -argument=G:\SyncSettings.ffs_batch -description="Connect the blue colored disk to begin!"
+
+Example: program/script:
+```
+"C:\Program files\made-confirm-launch\made-confirm-launch.exe"
+```
+Parameters:
+```
+-checkDrivePath=G:\ -program="C:\Program Files\FreeFileSync\FreeFileSync" -argument=G:\SyncSettings.ffs_batch -description="Connect the blue colored disk to begin!"
+```
+You can use more arguments, like searching for a file. Launch the program without argument to test this.
 
 ... done!
 
